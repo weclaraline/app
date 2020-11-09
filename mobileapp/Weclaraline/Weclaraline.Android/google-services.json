@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "903919404222",
+    "firebase_url": "https://crwn-db-21372.firebaseio.com",
+    "project_id": "crwn-db-21372",
+    "storage_bucket": "crwn-db-21372.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903919404222:android:ca5fd4965815f3d77a4aef",
+        "android_client_info": {
+          "package_name": "com.weclaraline.weclaraline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903919404222-uic7a7vm636v0v1tpocbldvg66vg12sn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.weclaraline.weclaraline",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "903919404222-hb622tgshpbbj1fudcp4hlgkuc9fh027.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRLCbl5YRpzfQ3sG19Af94NIxEOXS-UAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903919404222-hb622tgshpbbj1fudcp4hlgkuc9fh027.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
