@@ -9,6 +9,7 @@ using Android.OS;
 using Plugin.GoogleClient;
 using Android.Content;
 using Java.Security;
+using Weclaraline.Droid.Services;
 
 namespace Weclaraline.Droid
 {
@@ -25,7 +26,7 @@ namespace Weclaraline.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             GoogleClientManager.Initialize(this);
-            LoadApplication(new App());
+            LoadApplication(new App(new OAuth2Service()));
 #if DEBUG
             PrintHashKey(this);
 #endif

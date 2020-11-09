@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using Plugin.GoogleClient;
 using UIKit;
+using Weclaraline.iOS.Services;
 
 namespace Weclaraline.iOS
 {
@@ -23,8 +24,9 @@ namespace Weclaraline.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            global::Xamarin.Forms.Forms.Init(); 
+            LoadApplication(new App(new OAuth2Service()));
+
             GoogleClientManager.Initialize();
             return base.FinishedLaunching(app, options);
         }
