@@ -26,20 +26,6 @@ namespace Weclaraline.ViewModels
 
         public ObservableCollection<AuthNetwork> AuthenticationNetworks { get; set; } = new ObservableCollection<AuthNetwork>()
         {
-            new AuthNetwork()
-            {
-                Name = "Facebook",
-                Icon = "ic_fb",
-                Foreground = "#FFFFFF",
-                Background = "#4768AD"
-            },
-             new AuthNetwork()
-            {
-                Name = "Instagram",
-                Icon = "ic_ig",
-                Foreground = "#FFFFFF",
-                Background = "#DD2A7B"
-            },
               new AuthNetwork()
             {
                 Name = "Google",
