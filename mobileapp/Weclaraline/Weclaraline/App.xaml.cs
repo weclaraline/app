@@ -9,12 +9,12 @@ namespace Weclaraline
     public partial class App : Application
     {
 
-        public App(IOAuth2Service oAuth2Service)
+        public App()
         {
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new LoginPage(oAuth2Service);
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

@@ -21,7 +21,7 @@ namespace Weclaraline.ViewModels
 
        
         IGoogleClientManager _googleService = CrossGoogleClient.Current;
-        IOAuth2Service _oAuth2Service;
+        
 
 
         public ObservableCollection<AuthNetwork> AuthenticationNetworks { get; set; } = new ObservableCollection<AuthNetwork>()
@@ -36,10 +36,8 @@ namespace Weclaraline.ViewModels
         };
 
 
-        public LoginViewModel(IOAuth2Service oAuth2Service)
+        public LoginViewModel()
         {
-            _oAuth2Service = oAuth2Service;
-
             OnLoginCommand = new Command<AuthNetwork>(async (data) => await LoginAsync(data));
         }
         async Task LoginAsync(AuthNetwork authNetwork)
@@ -63,6 +61,7 @@ namespace Weclaraline.ViewModels
                 }
 
                 EventHandler<GoogleClientResultEventArgs<GoogleUser>> userLoginDelegate = null;
+                EventHandler<GoogleClientErrorEventArgs> userLoginFailDelegate = null;
                 userLoginDelegate = async (object sender, GoogleClientResultEventArgs<GoogleUser> e) =>
                 {
                     switch (e.Status)
@@ -99,7 +98,16 @@ namespace Weclaraline.ViewModels
                     _googleService.OnLogin -= userLoginDelegate;
                 };
 
+
+                userLoginFailDelegate = async (object sender, GoogleClientErrorEventArgs e) =>
+                {
+                    var x =e;
+                    
+                    _googleService.OnError -= userLoginFailDelegate;
+                };
                 _googleService.OnLogin += userLoginDelegate;
+                _googleService.OnError += userLoginFailDelegate;
+
 
                 await _googleService.LoginAsync();
             }

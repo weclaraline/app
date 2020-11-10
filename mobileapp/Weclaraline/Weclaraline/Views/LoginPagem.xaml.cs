@@ -8,15 +8,11 @@ namespace Weclaraline.Views
 {
     public partial class LoginPage : ContentPage
     {
+
         public LoginPage()
         {
             InitializeComponent();
-        }
-
-        public LoginPage(IOAuth2Service oAuth2Service)
-        {
-            InitializeComponent();
-            this.BindingContext = new LoginViewModel(oAuth2Service);
+            this.BindingContext = new LoginViewModel();
         }
     }
 }
