@@ -13,7 +13,7 @@ const {
 // });
 
 async function app() {
-  let data = await fileReader.readFile("../XML/SGM.xml");
+  let data = await fileReader.readFile("../XML/hmotrosconceptos.xml");
   let parsed = xmlParser.ParseXMLString(data);
 
   console.log(parsed);
@@ -22,13 +22,10 @@ async function app() {
 
   console.log(getFormaPago(parsed));
   console.log(getUsoCFDI(parsed));
-
-  data = await fileReader.readFile("../XML/sgmefectivo.xml");
-  parsed = xmlParser.ParseXMLString(data);
-
   let analyzer = new InvoiceAnalyzer();
 
   const res = analyzer.analyze(parsed);
+  console.log(res)
 }
 
 app();

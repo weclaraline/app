@@ -12,11 +12,11 @@ class InvoiceV3FieldResolver {
   }
 
   getConcepts(parsedObject) {
-    return parsedObject['cfdi:Comprobante']['cfdi:Conceptos']
+    return parsedObject['cfdi:Comprobante']['cfdi:Conceptos'][0]['cfdi:Concepto']
   }
 
   conceptGetClaveProdServ(concept){
-    return concept['cfdi:Concepto'][0]['$']['ClaveProdServ']
+    return concept['$']['ClaveProdServ']
   }
 
   getVersion(parsedObject) {
