@@ -10,6 +10,15 @@ class InvoiceV3FieldResolver {
   getFormaPago(parsedObject) {
     return parsedObject['cfdi:Comprobante']['$']['FormaPago']
   }
+
+  getConcepts(parsedObject) {
+    return parsedObject['cfdi:Comprobante']['cfdi:Conceptos']
+  }
+
+  conceptGetClaveProdServ(concept){
+    return concept['cfdi:Concepto'][0]['$']['ClaveProdServ']
+  }
+
   getVersion(parsedObject) {
     return parsedObject['cfdi:Comprobante']['$']['Version']
   }

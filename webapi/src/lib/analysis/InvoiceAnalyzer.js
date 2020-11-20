@@ -12,6 +12,8 @@ class InvoiceAnalyzer {
     const paymentForm = getUsoCFDI(invoice);
     if (paymentForm === "D07") {
       return new MedicalInsuranceInvoiceAnalyzer();
+    } else if (paymentForm === "D01") {
+      return new MedicalExpenseInvoiceAnalyzer();
     }
   }
 }
@@ -36,6 +38,18 @@ class InvoiceGeneralAnalyzer {
 }
 
 class MedicalInsuranceInvoiceAnalyzer {
+  constructor() {}
+
+  analyze(invoice) {
+    const invoiceAnalyzer = new InvoiceGeneralAnalyzer();
+
+    let generalObservations = invoiceAnalyzer.analyze(invoice);
+
+    return generalObservations;
+  }
+}
+
+class MedicalExpenseInvoiceAnalyzer {
   constructor() {}
 
   analyze(invoice) {
