@@ -11,7 +11,7 @@ const logOut = (response) => {
 
 const NavBar = () => (
   <div className="header">
-    <Link to="/" className="logo-container">
+    {/* <Link to="/" className="logo-container">
       <Logo className="logo"></Logo>
     </Link>
     <div className="options">
@@ -21,7 +21,7 @@ const NavBar = () => (
       <div className="option" onClick={() => logOut()}>
           Log out
         </div> 
-    </div>
+    </div> */}
   </div>
 );
 export default NavBar;
