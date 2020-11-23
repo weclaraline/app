@@ -22,7 +22,7 @@ function Login() {
       </div>
       <div className="login-button-container">
         <GoogleLogin
-          clientId="903919404222-hb622tgshpbbj1fudcp4hlgkuc9fh027.apps.googleusercontent.com"
+          clientId="641440446360-vecianv30pv4vbsfnhc2rbk628vch2ae.apps.googleusercontent.com"
           buttonText="Continue whith Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
