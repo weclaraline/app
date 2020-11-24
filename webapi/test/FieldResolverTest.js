@@ -7,11 +7,15 @@ const {
   getUsoCFDI,
   getConcepts,
   conceptGetClaveProdServ,
+  getUUID,
+  getDate,
+  getTotal,
 } = require("../src/lib/InvoiceFieldResolver");
 const fileReader = require("../src/lib/utils/FileReader");
 
 const filePath = "./XML/sgm.xml";
 const filePathCashPaid = "./XML/sgmefectivo.xml";
+const bankXML = "./XML/banco.xml";
 
 describe("InvoiceFieldResolver", function () {
   describe("Get the cfdi version", function () {
@@ -69,8 +73,35 @@ describe("InvoiceFieldResolver", function () {
       const concepts = getConcepts(parsed);
       assert.notDeepStrictEqual(undefined, concepts);
       const claveprodserv = conceptGetClaveProdServ(parsed, concepts[0]);
-      assert.strictEqual(claveprodserv, "84131602"); 
+      assert.strictEqual(claveprodserv, "84131602");
+    });
+  });
 
+  describe("Get the UUID", function () {
+    it("return the uuid of an invoice", async function () {
+      const data = await fileReader.readFile(bankXML);
+      const parsed = XMLParser.ParseXMLString(data);
+      const uuid = getUUID(parsed);
+      assert.notDeepStrictEqual(undefined, uuid);
+      assert.strictEqual(uuid, "A4F3850C-BF45-4B2A-98E1-C3B95EC3C155");
+    });
+  });
+  describe("Get the date", function () {
+    it("return the date of an invoice", async function () {
+      const data = await fileReader.readFile(bankXML);
+      const parsed = XMLParser.ParseXMLString(data);
+      const uuid = getDate(parsed);
+      assert.notDeepStrictEqual(undefined, uuid);
+      assert.strictEqual(uuid, "2020-09-30T23:59:59");
+    });
+  });
+  describe("Get the total", function () {
+    it("return the total of an invoice", async function () {
+      const data = await fileReader.readFile(bankXML);
+      const parsed = XMLParser.ParseXMLString(data);
+      const uuid = getTotal(parsed);
+      assert.notDeepStrictEqual(undefined, uuid);
+      assert.strictEqual(uuid, "3751.31");
     });
   });
 });

@@ -10,6 +10,20 @@ function getUsoCFDI(parsedObject) {
   return resolver.getUsoCFDI(parsedObject);
 }
 
+function getUUID(parsedObject) {
+  const resolver = getResolver(getVersion(parsedObject));
+  return resolver.getUUID(parsedObject);
+}
+
+function getDate(parsedObject) {
+  const resolver = getResolver(getVersion(parsedObject));
+  return resolver.getDate(parsedObject);
+}
+
+function getTotal(parsedObject) {
+  const resolver = getResolver(getVersion(parsedObject));
+  return resolver.getTotal(parsedObject);
+}
 
 function getVersion(parsedObject) {
   return parsedObject["cfdi:Comprobante"]["$"]["Version"];
@@ -20,7 +34,7 @@ function getConcepts(parsedObject) {
   return resolver.getConcepts(parsedObject);
 }
 
-function conceptGetClaveProdServ(parsedObject, concept){
+function conceptGetClaveProdServ(parsedObject, concept) {
   const resolver = getResolver(getVersion(parsedObject));
   return resolver.conceptGetClaveProdServ(concept);
 }
@@ -37,5 +51,8 @@ module.exports = {
   getVersion: getVersion,
   getUsoCFDI: getUsoCFDI,
   getConcepts: getConcepts,
-  conceptGetClaveProdServ: conceptGetClaveProdServ, 
+  conceptGetClaveProdServ: conceptGetClaveProdServ,
+  getUUID: getUUID,
+  getDate: getDate,
+  getTotal: getTotal,
 };
