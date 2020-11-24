@@ -2,10 +2,7 @@ const express = require('express');
 const { createConnection } = require('typeorm');
 const app = express();
 const port = 3000;
-const express = require('express')
 const fileUpload = require('express-fileupload');
-const app = express()
-const port = 3000
 
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
