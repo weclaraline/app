@@ -1,5 +1,7 @@
 import GoogleLogin from "react-google-login";
 import "./Login.css";
+import React from "react";
+
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -10,7 +12,7 @@ function Login() {
     <div className="login-container">
       <div className="login-logo-container">
         <img
-          class="login-logo"
+          className="login-logo"
           id="prompt-logo-center"
           src="https://patio-static-4c2daf01-ca97-41a7-a458-2fc04e6c57bf.s3.amazonaws.com/Patio+Logo.svg"
           alt="Welcome"
@@ -18,7 +20,7 @@ function Login() {
       </div>
       <div className="login-details">
         <h2>Weclaraline</h2>
-        <p>Tu declaracion de impuestos mas facil que nunca</p>
+        <p>Tu declaración de impuestos mas fácil que nunca</p>
       </div>
       <div className="login-button-container">
         <GoogleLogin
