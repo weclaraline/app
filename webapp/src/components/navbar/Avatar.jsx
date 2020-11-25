@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import Logout from '../logout/Logout';
 import {
   Avatar as MuiAvatar,
   Button,
   Menu,
   MenuItem,
-  Typography,
 } from '@material-ui/core';
 
 const Avatar = (props) => {
@@ -39,7 +39,7 @@ const Avatar = (props) => {
         onClose={handleClose}
       >
         <MenuItem>
-          <Typography>Cerrar sesión</Typography>
+          <Logout />
         </MenuItem>
       </Menu>
     </div>
