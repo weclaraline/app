@@ -50,6 +50,7 @@ function App() {
     <div className="App">
       {isLoading ? (
         <CircularProgress
+          data-test-id="is_user_logged_loader"
           variant="indeterminate"
           disableShrink
           size={40}
