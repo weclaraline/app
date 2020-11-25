@@ -1,0 +1,1 @@
+export { default as LogoBlue } from './logo_blue.svg';

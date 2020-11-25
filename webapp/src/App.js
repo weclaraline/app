@@ -41,11 +41,7 @@ function App() {
   useEffect(async () => {
     if (!proceed) {
       const loggedIn = await isUserLoggedIn();
-      if (loggedIn) {
-        setProceed(true);
-      } else {
-        setProceed(false);
-      }
+      setProceed(loggedIn);
     }
     setLoading(false);
   });

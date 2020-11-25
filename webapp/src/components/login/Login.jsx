@@ -3,6 +3,7 @@ import GoogleLogin from "react-google-login";
 import "./Login.css";
 import React from "react";
 import { setCurrentLoggedUserInfo } from "../../utils/LogIn";
+import { LogoBlue } from "../../assets/"
 
 const onSucessResponse = async (response) => {
   await setCurrentLoggedUserInfo(response);
@@ -20,7 +21,7 @@ function Login() {
         <img
           className="login-logo"
           id="prompt-logo-center"
-          src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Lol_question_mark.png"
+          src={LogoBlue}
           width="100"
           alt="Welcome"
         />
