@@ -23,7 +23,8 @@ createConnection({
   synchronize: true,
   logging: false,
   entities: [
-      require("./src/entity/PostSchema")
+      require("./src/entity/PostSchema"),
+      require("./src/entity/InvoiceSchema")
   ]
 }).then(() => {
   app.listen(port, () => {
@@ -36,19 +37,8 @@ app.post('/upload', function(req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
   }
-
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let sampleFile = req.files.xml;
-
   const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.Description)
-  //var str = sampleFile.data.toString('ascii')
-  // // Use the mv() method to place the file somewhere on your server
-  // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
-  //   if (err)
-  //     return res.status(500).send(err);
-
-  //   res.send('File uploaded!');
-  // });
   res.send(analysisRes)
 });
 
