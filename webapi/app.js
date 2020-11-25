@@ -2,7 +2,8 @@ const express = require('express');
 const { createConnection } = require('typeorm');
 const app = express();
 const port = 3000;
-const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload'); 
+const InvoiceService = require("./src/services/invoices/InvoicesService")
 
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
@@ -38,7 +39,9 @@ app.post('/upload', function(req, res) {
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let sampleFile = req.files.xml;
-  var str = sampleFile.data.toString('ascii')
+
+  const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.Description)
+  //var str = sampleFile.data.toString('ascii')
   // // Use the mv() method to place the file somewhere on your server
   // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
   //   if (err)
@@ -46,7 +49,7 @@ app.post('/upload', function(req, res) {
 
   //   res.send('File uploaded!');
   // });
-  res.send(str)
+  res.send(analysisRes)
 });
 
 app.listen(port, () => {

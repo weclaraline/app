@@ -3,21 +3,38 @@ const {
   getUsoCFDI,
   getConcepts,
   conceptGetClaveProdServ,
+  getTotal,
+  getUUID
 } = require("../../lib/InvoiceFieldResolver");
+
+const MEDICAL_EXPENSES_KEY = 'D01';
+const MEDICAL_INSURANCE_KEY = 'D07';
+const CORRECT_INVOICE_STATUS = 'ok';
+const INCORRECT_INVOICE_STATUS = 'notok';
+const CASH_PAID_KEY = '01';
+const CASH_PAID_MESSAGE = 'La factura fue pagada en efectivo';
+const CASH_PAID_CODE = '1';
+const CRITIC_LEVEL_KEY = 'critic';
+
+const MEDICAL_INSURANCE_CONCEPT ='Seguro de gastos médicos';
+const MEDICAL_EXPENSE_CONCEPT ='Gastos médicos';
+const CONCEPT_DOES_NOT_MEDICAL = 'El concepto no corresponde con un gasto medico clave: '
+const CONCEPT_DOES_NOT_MEDICAL_CODE = '2';
+
 
 class InvoiceAnalyzer {
   constructor() {}
 
-  analyze(invoice) {
+  analyze(invoice,description) {
     const analyzer = this.getAnalyzer(invoice);
-    return analyzer.analyze(invoice);
+    return analyzer.analyze(invoice, description);
   }
 
   getAnalyzer(invoice) {
     const paymentForm = getUsoCFDI(invoice);
-    if (paymentForm === "D07") {
+    if (paymentForm === MEDICAL_INSURANCE_KEY) {
       return new MedicalInsuranceInvoiceAnalyzer();
-    } else if (paymentForm === "D01") {
+    } else if (paymentForm === MEDICAL_EXPENSES_KEY) {
       return new MedicalExpenseInvoiceAnalyzer();
     }
   }
@@ -25,30 +42,45 @@ class InvoiceAnalyzer {
 
 class InvoiceGeneralAnalyzer {
   constructor() {}
-  analyze(invoice) {
+  analyze(invoice, description) {
     const paymentForm = getFormaPago(invoice);
+    const total = getTotal(invoice);
+    const UUID = getUUID(invoice);
 
-    let observations = [];
+    let res = {
+      concept: "",
+      description: description,
+      total: total,
+      uuid: UUID,
+      analysisResult: {
+        status: CORRECT_INVOICE_STATUS,
+        observations: [],
+      },
+    };
 
-    if (paymentForm === "01") {
-      observations.push({
-        description: "La factura fue pagada en efectivo",
-        level: "critic",
-        code: 1,
+    if (paymentForm === CASH_PAID_KEY) {
+      res.analysisResult.status = INCORRECT_INVOICE_STATUS
+      res.analysisResult.observations.push({
+        description: CASH_PAID_MESSAGE,
+        level: CRITIC_LEVEL_KEY,
+        code: CASH_PAID_CODE,
       });
 
-      return observations;
+      
     }
+    return res;
   }
 }
 
 class MedicalInsuranceInvoiceAnalyzer {
   constructor() {}
 
-  analyze(invoice) {
+  analyze(invoice, description) {
     const invoiceAnalyzer = new InvoiceGeneralAnalyzer();
 
-    let generalObservations = invoiceAnalyzer.analyze(invoice);
+    let generalObservations = invoiceAnalyzer.analyze(invoice, description);
+
+    generalObservations.concept = MEDICAL_INSURANCE_CONCEPT
 
     return generalObservations;
   }
@@ -68,33 +100,27 @@ class MedicalExpenseInvoiceAnalyzer {
 
   constructor() {}
 
-  analyze(invoice) {
+  analyze(invoice, description) {
     const invoiceAnalyzer = new InvoiceGeneralAnalyzer();
 
-    let generalObservations = invoiceAnalyzer.analyze(invoice);
+    let generalObservations = invoiceAnalyzer.analyze(invoice, description);
+    generalObservations.concept = MEDICAL_EXPENSE_CONCEPT
 
     const concepts = getConcepts(invoice);
 
     concepts.forEach((concept) => {
-      // let found = false;
       const satKey = conceptGetClaveProdServ(invoice, concept);
-
-      // validProductSATKeys.forEach((parentKey) => {
-      //   if (satKey.startsWith(parentKey)) {
-      //     found = true;
-      //   }
-      // });
-
-       const foundParentSatKey = this.validProductSATKeys.filter(parentKey =>{ 
-        return satKey.startsWith(parentKey)
-       })
+      const foundParentSatKey = this.validProductSATKeys.filter((parentKey) => {
+        return satKey.startsWith(parentKey);
+      });
 
       if (foundParentSatKey.length !== 1) {
-        generalObservations.push({
+        generalObservations.analysisResult.status = INCORRECT_INVOICE_STATUS
+        generalObservations.analysisResult.observations.push({
           description:
-            "El concepto no corresponde con un gasto medico clave: " + satKey,
-          level: "critic",
-          code: 2,
+          CONCEPT_DOES_NOT_MEDICAL + satKey,
+          level: CRITIC_LEVEL_KEY,
+          code: CONCEPT_DOES_NOT_MEDICAL_CODE,
         });
       }
     });

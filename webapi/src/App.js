@@ -13,7 +13,7 @@ const {
 // });
 
 async function app() {
-  let data = await fileReader.readFile("../XML/hmotrosconceptos.xml");
+  let data = await fileReader.readFile("../XML/sgm.xml");
   let parsed = xmlParser.ParseXMLString(data);
 
   console.log(parsed);
@@ -24,7 +24,7 @@ async function app() {
   console.log(getUsoCFDI(parsed));
   let analyzer = new InvoiceAnalyzer();
 
-  const res = analyzer.analyze(parsed);
+  const res = analyzer.analyze(parsed, 'desc');
   console.log(res)
 }
 
