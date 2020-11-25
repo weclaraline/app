@@ -1,9 +1,5 @@
 import React from "react";
-//import "./homepage.styles.scss"; 
-import NavBar from "../components/navbar/Navbar";
 const HomePage = () => (
-  <div className="homepage">
-    <NavBar></NavBar>
-  </div>
+  <div className="homepage">Página de inicio.</div>
 );
 export default HomePage;

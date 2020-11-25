@@ -1,11 +1,17 @@
+
 import GoogleLogin from "react-google-login";
 import "./Login.css";
 import React from "react";
+import { setCurrentLoggedUserInfo } from "../../utils/LogIn";
 
+const onSucessResponse = async (response) => {
+  await setCurrentLoggedUserInfo(response);
+  window.location.reload();
+}
 
-const responseGoogle = (response) => {
+const onFailureResponse = (response) => {
   console.log(response);
-};
+}
 
 function Login() {
   return (
@@ -26,8 +32,8 @@ function Login() {
         <GoogleLogin
           clientId="641440446360-vecianv30pv4vbsfnhc2rbk628vch2ae.apps.googleusercontent.com"
           buttonText="Continue whith Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          onSuccess={onSucessResponse}
+          onFailure={onFailureResponse}
           cookiePolicy={"single_host_origin"}
         />
       </div>
