@@ -19,7 +19,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const Notifications = () => {
+const Notifications = ({ notifications = [] }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -38,32 +38,33 @@ const Notifications = () => {
         color="inherit"
         onClick={handleClick}
       >
-        <Badge badgeContent={2} color="error">
+        <Badge badgeContent={notifications.length} color="error">
           <NotificationIcon />
         </Badge>
       </IconButton>
-      <Popover
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        <List>
-          <ListItem>
-            <ListItemText primary="notification 1" />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="notification 2" />
-          </ListItem>
-        </List>
-      </Popover>
+      {notifications.length > 0 && (
+        <Popover
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
+          <List>
+            {notifications.map((notification) => (
+              <ListItem key={notification}>
+                <ListItemText primary={notification} />
+              </ListItem>
+            ))}
+          </List>
+        </Popover>
+      )}
     </>
   );
 };
