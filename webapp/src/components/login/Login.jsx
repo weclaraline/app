@@ -1,7 +1,6 @@
-import GoogleLogin from "react-google-login";
-import "./Login.css";
-import React from "react";
-
+import GoogleLogin from 'react-google-login';
+import './Login.css';
+import React from 'react';
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -14,7 +13,8 @@ function Login() {
         <img
           className="login-logo"
           id="prompt-logo-center"
-          src="https://patio-static-4c2daf01-ca97-41a7-a458-2fc04e6c57bf.s3.amazonaws.com/Patio+Logo.svg"
+          src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Lol_question_mark.png"
+          width="100"
           alt="Welcome"
         />
       </div>
@@ -28,7 +28,7 @@ function Login() {
           buttonText="Continue whith Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
+          cookiePolicy={'single_host_origin'}
         />
       </div>
     </div>
