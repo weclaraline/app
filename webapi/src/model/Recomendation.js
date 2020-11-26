@@ -1,11 +1,11 @@
 class Recomendation {
-    constructor(id, key, text) {
-        this.id = id;
+    constructor(key, concept, text) {
         this.key = key;
+        this.concept = concept;
         this.text = text;
     }
 }
 
 module.exports = {
-    Recomendation: Recomendation
+    Recomendation,
 };
