@@ -7,8 +7,16 @@ async function addQuestionAndAnswer(question, answer) {
     return await getManager().getRepository(FAQ_entity).save(new_faq);
 }
 
-async function getQuestionsAndAnswers() {
-    return await getManager().getRepository(FAQ_entity).find();;
+async function getQuestionsAndAnswers(id) {
+    if(id) {
+        return await getManager().getRepository(FAQ_entity).find({
+            where: {
+                id: id
+            }
+        });
+    } else {
+        return await getManager().getRepository(FAQ_entity).find();
+    }
 }
 
 

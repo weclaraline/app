@@ -11,4 +11,10 @@ route.get('/', (req, res) => {
         .then(result => res.send(result));
 });
 
+route.get('/:id', (req, res) => {
+    let id = req.params.id;
+    FAQService.getQuestionsAndAnswers(id)
+        .then(result => res.send(result));
+});
+
 module.exports = route;
