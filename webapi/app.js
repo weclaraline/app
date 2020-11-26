@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const fileUpload = require('express-fileupload'); 
 const InvoiceService = require("./src/services/invoices/InvoicesService")
+const RecomendationService = require("./src/services/recomendation/RecomendationService")
 
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
@@ -24,7 +25,8 @@ createConnection({
   logging: false,
   entities: [
       require("./src/entity/PostSchema"),
-      require("./src/entity/InvoiceSchema")
+      require("./src/entity/InvoiceSchema"),
+      require("./src/entity/RecomendationSchema")
   ]
 }).then(() => {
   app.listen(port, () => {
@@ -40,6 +42,17 @@ app.post('/upload', function(req, res) {
   let sampleFile = req.files.xml;
   const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.Description)
   res.send(analysisRes)
+});
+
+app.get('/recomendations', (req, res) => {
+  const recomendations = RecomendationService.get()
+  res.send(recomendations)
+})
+
+app.get('/recomendations/:key', function (req, res) {
+  const key = req.params.key;
+  const recomendations = RecomendationService.get(key)
+  res.send(recomendations)
 });
 
 app.listen(port, () => {
