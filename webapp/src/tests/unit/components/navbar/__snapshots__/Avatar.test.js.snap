@@ -26,9 +26,7 @@ exports[`Renders original content 1`] = `
       }
     }
   >
-    <WithStyles(ForwardRef(MenuItem))>
-      <Logout />
-    </WithStyles(ForwardRef(MenuItem))>
+    <Logout />
   </WithStyles(ForwardRef(Menu))>
 </div>
 `;

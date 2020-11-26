@@ -7,8 +7,10 @@ exports[`Renders original content 1`] = `
   <WithStyles(ForwardRef(Toolbar))
     className="makeStyles-toolbar-1"
   >
-    <StarIcon
+    <img
+      alt="Weclaraline"
       className="makeStyles-logo-2"
+      src="logo.svg"
     />
     <nav
       className="makeStyles-navigation-3"

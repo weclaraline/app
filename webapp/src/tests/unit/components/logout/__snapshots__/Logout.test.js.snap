@@ -3,7 +3,7 @@
 exports[`Renders original content 1`] = `
 <div>
   <v
-    buttonText="Cerrar sesión"
+    buttonText="Logout of Google"
     clientId="903919404222-hb622tgshpbbj1fudcp4hlgkuc9fh027.apps.googleusercontent.com"
     disabledStyle={
       Object {
@@ -13,6 +13,7 @@ exports[`Renders original content 1`] = `
     icon={true}
     jsSrc="https://apis.google.com/js/api.js"
     onLogoutSuccess={[Function]}
+    render={[Function]}
     tag="button"
     theme="light"
     type="button"

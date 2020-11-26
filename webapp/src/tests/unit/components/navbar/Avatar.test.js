@@ -1,9 +1,9 @@
-import '../../testing_utils';
+import "../../testing_utils";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
-import Login from "../../../components/login/Login";
+import Avatar from "../../../../components/navbar/Avatar";
 
 it("Renders original content", ()=> {
-    const tree = shallow(<Login />);
+    const tree = shallow(<Avatar />);
     expect(toJson(tree)).toMatchSnapshot();
 });
