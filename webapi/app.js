@@ -54,7 +54,3 @@ app.get('/recomendations/:key', function (req, res) {
   const recomendations = RecomendationService.get(key)
   res.send(recomendations)
 });
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
