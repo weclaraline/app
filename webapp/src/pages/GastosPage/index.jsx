@@ -1,7 +1,7 @@
 import React from 'react';
-
 import Container from '../../components/Container';
 import Graphs from './Graphs';
+
 
 const Gastos = () => (
   <Container>

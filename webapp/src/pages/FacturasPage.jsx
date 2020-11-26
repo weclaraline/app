@@ -1,5 +1,12 @@
 import React from 'react';
+import Facturas from '../components/facturas/Facturas';
 
-const Facturas = () =>  (<div data-testid="home_page"> <h1>Página de Facturas.</h1> </div>);
+const FacturasPage = () =>  {
+    return  (
+        <div data-testid="facturas_page"> 
+            <Facturas /> 
+        </div>
+    );
+}
 
-export default Facturas;
+export default FacturasPage;
