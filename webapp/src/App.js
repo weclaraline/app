@@ -8,7 +8,6 @@ import Navbar from './components/navbar/Navbar';
 import { HomePage, FacturasPage, GastosPage } from './pages/';
 import { isUserLoggedIn } from './utils/LogIn';
 import { useEffect } from 'react';
-import { CircularProgress } from '@material-ui/core';
 
 const UserApp = (proceed) =>
   proceed ? (
