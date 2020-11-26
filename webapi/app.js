@@ -6,6 +6,7 @@ const port = 3000;
 const fileUpload = require('express-fileupload'); 
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
+const faqRouter = require("./routes/faq.router");
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
 }));
@@ -26,19 +27,22 @@ createConnection({
   entities: [
       require("./src/entity/PostSchema"),
       require("./src/entity/InvoiceSchema"),
-      require("./src/entity/RecomendationSchema")
+      require("./src/entity/RecomendationSchema"),
+      require("./src/entity/FaqSchema")
   ]
 }).then(() => {
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   require("./routes/recommendations")(app);
-
+  app.use('/faq', faqRouter);
+  
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
     console.log(`Example app listening at http://localhost:${port}`)
   });
 }).catch(error => console.log(error));
+
 
 app.post('/upload', function(req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
