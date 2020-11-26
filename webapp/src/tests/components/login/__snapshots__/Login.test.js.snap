@@ -3,6 +3,7 @@
 exports[`Renders original content 1`] = `
 <div
   className="login-container"
+  data-testid="login_screen"
 >
   <div
     className="login-logo-container"

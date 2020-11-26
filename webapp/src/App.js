@@ -21,7 +21,7 @@ const UserApp = (proceed) =>
         <Route path="/facturas">
           <FacturasPage />
         </Route>
-        <Route path="/home">
+        <Route path="/">
           <HomePage />
         </Route>
       </Switch>
@@ -29,36 +29,24 @@ const UserApp = (proceed) =>
   ) : (
     <Router>
       <Route path="/">
-        <Login />
+        <Login/>
       </Route>
     </Router>
   );
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
-  const [proceed, setProceed] = useState();
+  const [proceed, setProceed] = useState(false);
 
   useEffect(async () => {
     if (!proceed) {
       const loggedIn = await isUserLoggedIn();
       setProceed(loggedIn);
     }
-    setLoading(false);
   });
 
   return (
     <div className="App">
-      {isLoading ? (
-        <CircularProgress
-          data-test-id="is_user_logged_loader"
-          variant="indeterminate"
-          disableShrink
-          size={40}
-          thickness={4}
-        />
-      ) : (
-        UserApp(proceed)
-      )}
+      { UserApp(proceed) }
     </div>
   );
 }

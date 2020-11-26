@@ -16,7 +16,7 @@ const onFailureResponse = (response) => {
 
 function Login() {
   return (
-    <div className="login-container">
+    <div data-testid="login_screen" className="login-container">
       <div className="login-logo-container">
         <img
           className="login-logo"

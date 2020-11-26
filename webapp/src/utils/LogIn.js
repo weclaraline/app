@@ -1,5 +1,5 @@
 import localForage from 'localforage';
-const CURRENT_LOGGED_USER = "user";
+export const CURRENT_LOGGED_USER = "user";
 
 export const setCurrentLoggedUserInfo = async (response) => {
     const  { wt : userInfo } = response;
@@ -12,7 +12,6 @@ export const clearCurrentLoggedUserInfo = async () => localForage.setItem(CURREN
 
 export const isUserLoggedIn = async () => {
     const isLogged = await localForage.getItem(CURRENT_LOGGED_USER);
-    console.log(isLogged);
     if(isLogged != null && JSON.stringify(isLogged) != '{}' && typeof isLogged !== 'undefined'){
         return true;
     }

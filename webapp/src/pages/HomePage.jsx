@@ -1,5 +1,10 @@
 import React from "react";
 const HomePage = () => (
-  <div className="homepage">Página de inicio.</div>
+  <div 
+    data-testid="home_page" 
+    className="homepage"
+  >
+      Página de inicio.
+  </div>
 );
 export default HomePage;
