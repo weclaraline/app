@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Logout from '../logout/Logout';
-import { Avatar as MuiAvatar, Button, Menu, MenuItem } from '@material-ui/core';
+import { Avatar as MuiAvatar, Button, Menu } from '@material-ui/core';
 
 const Avatar = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
