@@ -6,11 +6,11 @@ import {
   createStyles,
   Typography,
 } from '@material-ui/core';
-import { Star } from '@material-ui/icons';
 import { NavLink } from 'react-router-dom';
 
 import Notifications from './Notifications';
 import Avatar from './Avatar';
+import Logo from '../../assets/logo.svg';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) =>
     },
     logo: {
       marginRight: '50px',
+      width: '40px',
       [theme.breakpoints.down('md')]: {
         marginRight: 'auto',
       },
@@ -79,7 +80,7 @@ const NavBar = () => {
   return (
     <AppBar position="relative">
       <Toolbar className={classes.toolbar}>
-        <Star className={classes.logo} />
+        <img src={Logo} alt="Weclaraline" className={classes.logo} />
         <nav className={classes.navigation}>
           <NavLink to="/facturas" activeClassName="selected">
             <Typography variant="subtitle1">Facturas</Typography>
