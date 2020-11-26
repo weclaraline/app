@@ -14,7 +14,7 @@ app.use(fileUpload({
 app.get('/', (req, res) => {
   res.send('Hello Weclaraline!')
 })
-
+app.use(bodyParser.urlencoded({ extended: true }));
 createConnection({
   type: "postgres",
   host: process.env.DB_HOSTNAME,
@@ -32,8 +32,9 @@ createConnection({
   ]
 }).then(() => {
 
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+
   require("./routes/recommendations")(app);
   app.use('/faq', faqRouter);
   
@@ -43,13 +44,21 @@ createConnection({
   });
 }).catch(error => console.log(error));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.post('/upload', function(req, res) {
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
   }
   let sampleFile = req.files.xml;
-  const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.Description)
+  const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.uid)
   res.send(analysisRes)
+});
+
+
+app.post("/invoice/commit", async function (req, res) {
+  const result = await InvoiceService.commitInvoice(req.body.uuid, req.body.status);
+  res.send(result)
 });
 

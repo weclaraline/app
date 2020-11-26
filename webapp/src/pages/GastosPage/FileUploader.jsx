@@ -26,15 +26,16 @@ const FileUploader = () => {
   const classes = useStyles();
   const [file, setFile] = useState();
 
-  const handleChangeFile = async (value) => {
+  const handleChangeFile = (value) => {
     setFile(value);
-    console.log(await getCurrentLoggedUserInfo())
-    console.log('getCurrentLoggedUserInfo()')
   };
 
-  function uploadFile() {
+  async function uploadFile() {
     const data = new FormData();
+    let userId   = await getCurrentLoggedUserInfo();
+    console.log(userId) 
     data.append('xml', file);
+    data.append('uid', userId.googleId);
     axios
       .post('http://localhost:3000/upload', data, {
       })

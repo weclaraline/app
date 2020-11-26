@@ -7,12 +7,12 @@ const InvoiceAnalyzer = require("../../lib/analysis/InvoiceAnalyzer");
 
 const { getDate } = require("../../lib/InvoiceFieldResolver");
 
-async function processUpload(fileData) {
+async function processUpload(fileData, uid) {
   var str = fileData.toString("utf-8");
   let parsed = xmlParser.ParseXMLString(str);
   let analyzer = new InvoiceAnalyzer();
   const analysisResult = analyzer.analyze(parsed);
-  const schema = BuildSchema(parsed, str, "ownerId", analysisResult);
+  const schema = BuildSchema(parsed, str, uid, analysisResult);
   await create(schema);
   return analysisResult;
 }
