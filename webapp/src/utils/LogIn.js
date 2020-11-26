@@ -2,7 +2,7 @@ import localForage from 'localforage';
 export const CURRENT_LOGGED_USER = "user";
 
 export const setCurrentLoggedUserInfo = async (response) => {
-    const  { wt : userInfo } = response;
+    const  { profileObj : userInfo } = response;
     await localForage.setItem(CURRENT_LOGGED_USER, userInfo);
 }
 
