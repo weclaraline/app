@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders original content 1`] = `
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  data-testid="lista_tipo_deducibles"
+>
+  <WithStyles(ForwardRef(Typography))
+    variant="subtitle2"
+  >
+    Conceptos
+  </WithStyles(ForwardRef(Typography))>
+</WithStyles(ForwardRef(Grid))>
+`;
