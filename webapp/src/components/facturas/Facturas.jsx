@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Card, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import ConceptoDeduciblesComponent from "../facturas/ConceptoDeduciblesComponent";
 import FAQEnlacesComponent from "../facturas/FAQEnlacesComponent";
@@ -8,6 +8,9 @@ const useStyles = makeStyles( (theme) => {
     const { overline, h1 } = theme.typography;
     return (
         {
+            detailsContainer: {
+                margin: theme.spacing(2)
+            },
             headerRow: {
                 height: "200px",
                 background: main,
@@ -36,7 +39,7 @@ const Facturas = () => {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} className={classes.facturasContainer} >
             <Grid 
                 data-testid="title_banner" 
                 item 
@@ -52,12 +55,30 @@ const Facturas = () => {
                     </Typography>
                 </Paper>
             </Grid>
-            <Grid item xs={6}>
-                <ConceptoDeduciblesComponent />
-            </Grid>
-            <Grid item xs={4}>
-                <FAQEnlacesComponent />
-            </Grid>    
+            <Grid 
+                container
+                spacing={3}
+                className={classes.detailsContainer}
+            >
+                <Grid 
+                    item 
+                    xs={12} 
+                    lg={8}
+                >
+                    <Card>
+                        <ConceptoDeduciblesComponent />
+                    </Card>
+                </Grid>
+                <Grid 
+                    item 
+                    xs={12} 
+                    lg={4}
+                >
+                    <Card>
+                        <FAQEnlacesComponent />
+                    </Card>
+                </Grid>   
+            </Grid> 
         </Grid>
     );
 }
