@@ -28,7 +28,8 @@ createConnection({
       require("./src/entity/PostSchema"),
       require("./src/entity/InvoiceSchema"),
       require("./src/entity/RecomendationSchema"),
-      require("./src/entity/FaqSchema")
+      require("./src/entity/FaqSchema"),
+      require("./src/entity/SupportLinksSchema")
   ]
 }).then(() => {
 
