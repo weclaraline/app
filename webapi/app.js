@@ -7,6 +7,8 @@ const fileUpload = require('express-fileupload');
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
+const supportLinksRouter = require("./routes/supportLinks.router");
+
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
 }));
@@ -39,6 +41,7 @@ createConnection({
   require("./routes/recommendations")(app);
   app.use('/faq', faqRouter);
   require("./routes/invoice")(app);
+  app.use('/links', supportLinksRouter);
 
   
   app.listen(port, () => {

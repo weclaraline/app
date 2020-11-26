@@ -13,6 +13,9 @@ module.exports = new EntitySchema({
         link: {
             type: "varchar"
         }, 
+        description: {
+            type: "varchar"
+        },
         created_at: {
             type: "timestamp"
         }
