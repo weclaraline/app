@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar';
 import { HomePage, FacturasPage, GastosPage } from './pages/';
 import { isUserLoggedIn } from './utils/LogIn';
 import { useEffect } from 'react';
+import ThemeProvider from './providers/ThemeProvider';
 
 const UserApp = (proceed) =>
   proceed ? (
@@ -28,7 +29,7 @@ const UserApp = (proceed) =>
   ) : (
     <Router>
       <Route path="/">
-        <Login/>
+        <Login />
       </Route>
     </Router>
   );
@@ -45,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      { UserApp(proceed) }
+      <ThemeProvider>{UserApp(proceed)}</ThemeProvider>
     </div>
   );
 }
