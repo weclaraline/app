@@ -33,7 +33,6 @@ const FileUploader = () => {
   async function uploadFile() {
     const data = new FormData();
     let userId   = await getCurrentLoggedUserInfo();
-    console.log(userId) 
     data.append('xml', file);
     data.append('uid', userId.googleId);
     axios

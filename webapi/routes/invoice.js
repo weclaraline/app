@@ -17,7 +17,8 @@ module.exports = function (app) {
   app.post("/invoice/commit", async function (req, res) {
     const result = await InvoiceService.commitInvoice(
       req.body.uuid,
-      req.body.status
+      req.body.status,
+      req.body.description
     );
     res.send(result);
   });

@@ -17,10 +17,11 @@ async function processUpload(fileData, uid) {
   return analysisResult;
 }
 
-async function commitInvoice(uuid, status) {
+async function commitInvoice(uuid, status, description) {
   if (status === "save") {
     let persisted = await GetbyUUID(uuid);
     persisted.commited = status;
+    persisted.description = description;
     update(persisted);
   } else if (status === "dispose") {
     deleteInvoicebyUUID(uuid);
