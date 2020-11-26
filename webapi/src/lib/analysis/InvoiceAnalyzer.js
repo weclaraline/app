@@ -13,7 +13,7 @@ const SCHOLAR_MONTHLY_TARIF = 'D10'; //Colegiaturas
 const FUNERAL_EXPENSES = 'D03'; //Gastos Funerales 
 const MORTGAGE_CREDIT = 'D05'; //Creditos hipotecarios   
 const DONATIONS = 'D04'; //Donativos  
-const RETIREMENT_APORTATION = 'D06'; //Aportaciones al retiro 
+const RETIREMENT_APORTATION = 'D06'; //Aportaciones al retiro
  
 const CORRECT_INVOICE_STATUS = 'ok';
 

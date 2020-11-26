@@ -1,10 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const { createConnection } = require('typeorm');
 const app = express();
 const port = 3000;
 const fileUpload = require('express-fileupload'); 
-const InvoiceService = require("./src/services/invoices/InvoicesService")
-const RecomendationService = require("./src/services/recomendation/RecomendationService")
+const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
@@ -29,6 +29,11 @@ createConnection({
       require("./src/entity/RecomendationSchema")
   ]
 }).then(() => {
+
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  require("./routes/recommendations")(app);
+
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
     console.log(`Example app listening at http://localhost:${port}`)
@@ -44,13 +49,3 @@ app.post('/upload', function(req, res) {
   res.send(analysisRes)
 });
 
-app.get('/recomendations', (req, res) => {
-  const recomendations = RecomendationService.get()
-  res.send(recomendations)
-})
-
-app.get('/recomendations/:key', function (req, res) {
-  const key = req.params.key;
-  const recomendations = RecomendationService.get(key)
-  res.send(recomendations)
-});
