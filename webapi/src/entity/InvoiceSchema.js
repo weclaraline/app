@@ -1,5 +1,5 @@
-const EntitySchema = require("typeorm").EntitySchema; // import {EntitySchema} from "typeorm";
-const Invoice = require("../model/Invoice").Invoice; // import {Post} from "../model/Post";
+const EntitySchema = require("typeorm").EntitySchema;
+const Invoice = require("../model/Invoice").Invoice;
 
 module.exports = new EntitySchema({
     name: "Invoice",

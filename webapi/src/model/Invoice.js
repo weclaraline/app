@@ -1,6 +1,5 @@
 class Invoice {
-    constructor(id, ownerId, date, concept, description, total, UUID, xml, analysisResult, commited) {
-        this.id = id;
+    constructor(ownerId, date, concept, description, total, UUID, xml, analysisResult, commited) {
         this.ownerId = ownerId;
         this.date = date;
         this.concept = concept;

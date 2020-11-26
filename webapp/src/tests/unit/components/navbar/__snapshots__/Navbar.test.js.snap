@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders original content 1`] = `
+<WithStyles(ForwardRef(AppBar))
+  position="relative"
+>
+  <WithStyles(ForwardRef(Toolbar))
+    className="makeStyles-toolbar-1"
+  >
+    <img
+      alt="Weclaraline"
+      className="makeStyles-logo-2"
+      src="logo.svg"
+    />
+    <nav
+      className="makeStyles-navigation-3"
+    >
+      <NavLink
+        activeClassName="selected"
+        to="/facturas"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="subtitle1"
+        >
+          Facturas
+        </WithStyles(ForwardRef(Typography))>
+      </NavLink>
+      <NavLink
+        activeClassName="selected"
+        to="/mis-gastos"
+      >
+        <WithStyles(ForwardRef(Typography))
+          variant="subtitle1"
+        >
+          Mis gastos
+        </WithStyles(ForwardRef(Typography))>
+      </NavLink>
+    </nav>
+    <div
+      className="makeStyles-actions-5"
+    >
+      <Notifications />
+      <Avatar
+        className="makeStyles-avatar-4"
+      />
+    </div>
+  </WithStyles(ForwardRef(Toolbar))>
+</WithStyles(ForwardRef(AppBar))>
+`;

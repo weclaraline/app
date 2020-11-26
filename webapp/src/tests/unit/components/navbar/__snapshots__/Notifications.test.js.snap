@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders original content 1`] = `
+<Fragment>
+  <WithStyles(ForwardRef(IconButton))
+    className="makeStyles-button-1"
+    color="inherit"
+    onClick={[Function]}
+  >
+    <WithStyles(ForwardRef(Badge))
+      badgeContent={0}
+      color="error"
+    >
+      <NotificationsIcon />
+    </WithStyles(ForwardRef(Badge))>
+  </WithStyles(ForwardRef(IconButton))>
+</Fragment>
+`;

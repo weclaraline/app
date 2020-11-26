@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders original content 1`] = `
+<div>
+  <WithStyles(ForwardRef(Button))
+    onClick={[Function]}
+  >
+    <WithStyles(ForwardRef(Avatar)) />
+  </WithStyles(ForwardRef(Button))>
+  <WithStyles(ForwardRef(Menu))
+    anchorEl={null}
+    anchorOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "bottom",
+      }
+    }
+    anchorReference={null}
+    getContentAnchorEl={null}
+    onClose={[Function]}
+    open={false}
+    transformOrigin={
+      Object {
+        "horizontal": "right",
+        "vertical": "top",
+      }
+    }
+  >
+    <Logout />
+  </WithStyles(ForwardRef(Menu))>
+</div>
+`;

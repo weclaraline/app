@@ -7,9 +7,16 @@ const {
   getUUID
 } = require("../../lib/InvoiceFieldResolver");
 
-const MEDICAL_EXPENSES_KEY = 'D01';
-const MEDICAL_INSURANCE_KEY = 'D07';
+const MEDICAL_EXPENSES_KEY = 'D01'; //Gastos medicos
+const MEDICAL_INSURANCE_KEY = 'D07'; //Primas de seguros
+const SCHOLAR_MONTHLY_TARIF = 'D10'; //Colegiaturas
+const FUNERAL_EXPENSES = 'D03'; //Gastos Funerales 
+const MORTGAGE_CREDIT = 'D05'; //Creditos hipotecarios   
+const DONATIONS = 'D04'; //Donativos  
+const RETIREMENT_APORTATION = 'D06'; //Aportaciones al retiro 
+ 
 const CORRECT_INVOICE_STATUS = 'ok';
+
 const INCORRECT_INVOICE_STATUS = 'notok';
 const CASH_PAID_KEY = '01';
 const CASH_PAID_MESSAGE = 'La factura fue pagada en efectivo';

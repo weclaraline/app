@@ -13,6 +13,9 @@ module.exports = new EntitySchema({
         key: {
             type: "varchar"
         },
+        concept: {
+            type: "varchar"
+        },
         text: {
             type: "text"
         }
