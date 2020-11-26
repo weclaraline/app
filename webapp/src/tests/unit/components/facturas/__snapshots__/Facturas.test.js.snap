@@ -1,8 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders original content 1`] = `
-<WithStyles(ForwardRef(Container))>
-  <TipoDeduciblesComponent />
-  <FAQEnlacesComponent />
-</WithStyles(ForwardRef(Container))>
+<WithStyles(ForwardRef(Grid))
+  container={true}
+  spacing={3}
+>
+  <WithStyles(ForwardRef(Grid))
+    className="makeStyles-headerRow-1"
+    data-testid="title_banner"
+    item={true}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-paper-2"
+      elevation={0}
+    >
+      <WithStyles(ForwardRef(Typography))
+        variant="h4"
+      >
+        Guía para solicitar facturas.
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        Sigue los pasos para que fácilmente...
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Paper))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={6}
+  >
+    <TipoDeduciblesComponent />
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={4}
+  >
+    <FAQEnlacesComponent />
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
 `;

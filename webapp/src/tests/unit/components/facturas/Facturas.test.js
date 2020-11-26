@@ -60,6 +60,7 @@ it("Calls recommendation service and loads recommendations", async () => {
     createRecommendationsInterceptor();
     build();
     await waitFor(() => {
+        expect( getByTestId(container, "title_banner") ).toBeInTheDocument();
         expect( getByTestId(container, "lista_tipo_deducibles") ).toBeInTheDocument();
         expect( getByTestId(container, "panel_faq_enlaces") ).toBeInTheDocument();
     });

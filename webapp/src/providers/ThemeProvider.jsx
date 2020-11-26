@@ -1,16 +1,14 @@
-import React from 'react';
 import {
-  ThemeProvider as MuiThemeProvider,
-  CssBaseline,
-  createMuiTheme,
+  createMuiTheme, CssBaseline, ThemeProvider as MuiThemeProvider
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#006DB3',
-    },
+      main: "#006DB3",
+    }
   },
 });
 
