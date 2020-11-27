@@ -32,9 +32,9 @@ const CONCEPT_DOES_NOT_MEDICAL_CODE = '2';
 class InvoiceAnalyzer {
   constructor() {}
 
-  analyze(invoice,description) {
+  analyze(invoice) {
     const analyzer = this.getAnalyzer(invoice);
-    return analyzer.analyze(invoice, description);
+    return analyzer.analyze(invoice);
   }
 
   getAnalyzer(invoice) {
@@ -49,14 +49,14 @@ class InvoiceAnalyzer {
 
 class InvoiceGeneralAnalyzer {
   constructor() {}
-  analyze(invoice, description) {
+  analyze(invoice) {
     const paymentForm = getFormaPago(invoice);
     const total = getTotal(invoice);
     const UUID = getUUID(invoice);
 
     let res = {
       concept: "",
-      description: description,
+      description: '',
       total: total,
       uuid: UUID,
       analysisResult: {
@@ -82,10 +82,10 @@ class InvoiceGeneralAnalyzer {
 class MedicalInsuranceInvoiceAnalyzer {
   constructor() {}
 
-  analyze(invoice, description) {
+  analyze(invoice) {
     const invoiceAnalyzer = new InvoiceGeneralAnalyzer();
 
-    let generalObservations = invoiceAnalyzer.analyze(invoice, description);
+    let generalObservations = invoiceAnalyzer.analyze(invoice);
 
     generalObservations.concept = MEDICAL_INSURANCE_CONCEPT
 
@@ -107,10 +107,10 @@ class MedicalExpenseInvoiceAnalyzer {
 
   constructor() {}
 
-  analyze(invoice, description) {
+  analyze(invoice) {
     const invoiceAnalyzer = new InvoiceGeneralAnalyzer();
 
-    let generalObservations = invoiceAnalyzer.analyze(invoice, description);
+    let generalObservations = invoiceAnalyzer.analyze(invoice);
     generalObservations.concept = MEDICAL_EXPENSE_CONCEPT
 
     const concepts = getConcepts(invoice);

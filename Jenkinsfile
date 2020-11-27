@@ -1,24 +1,7 @@
 pipeline {
     agent none
     stages {
-        stage('build webapi') {
-            agent { docker { image 'node:14-alpine' } }
-            steps {
-                dir('webapi') {
-                    sh "npm install"
-                }
-            }
-        }
-        stage('build webapp') {
-            agent { docker { image 'node:14-alpine' } }
-            steps {
-                dir('webapp') {
-                    sh "npm install"
-                    sh "npm run build"
-                }
-            }
-        }
-        stage('package webapi') {
+        stage('build and package webapi') {
             agent any
             steps {
                 dir('webapi') {
@@ -26,7 +9,7 @@ pipeline {
                 }
             }
         }
-        stage('package webapp') {
+        stage('build and package webapp') {
             agent any
             steps {
                 dir('webapp') {
@@ -37,9 +20,9 @@ pipeline {
         stage('deploy') {
             agent any
             steps {
-                sh "docker stop webapi"
+                sh "docker stop webapi || true"
                 sh "docker run --rm -d -p 3000:3000 --name webapi webapi:${currentBuild.number}"
-                sh "docker stop webapp"
+                sh "docker stop webapp || true"
                 sh "docker run --rm -d -p 5000:5000 --name webapp webapp:${currentBuild.number}"
             }
         }

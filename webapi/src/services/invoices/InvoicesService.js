@@ -7,20 +7,21 @@ const InvoiceAnalyzer = require("../../lib/analysis/InvoiceAnalyzer");
 
 const { getDate } = require("../../lib/InvoiceFieldResolver");
 
-async function processUpload(fileData, description) {
+async function processUpload(fileData, uid) {
   var str = fileData.toString("utf-8");
   let parsed = xmlParser.ParseXMLString(str);
   let analyzer = new InvoiceAnalyzer();
-  const analysisResult = analyzer.analyze(parsed, description);
-  const schema = BuildSchema(parsed, str, "ownerId", analysisResult);
+  const analysisResult = analyzer.analyze(parsed);
+  const schema = BuildSchema(parsed, str, uid, analysisResult);
   await create(schema);
   return analysisResult;
 }
 
-async function commitInvoice(uuid, status) {
+async function commitInvoice(uuid, status, description) {
   if (status === "save") {
     let persisted = await GetbyUUID(uuid);
     persisted.commited = status;
+    persisted.description = description;
     update(persisted);
   } else if (status === "dispose") {
     deleteInvoicebyUUID(uuid);

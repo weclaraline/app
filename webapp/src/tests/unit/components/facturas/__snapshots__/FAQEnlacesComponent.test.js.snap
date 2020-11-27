@@ -1,9 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders original content 1`] = `
-<div
+<Styled(MuiBox)
   data-testid="panel_faq_enlaces"
+  pr={4}
 >
-  Hola, contendré la FAQ y enlaces de ayuda.
-</div>
+  <WithStyles(ForwardRef(Card))>
+    <WithStyles(ForwardRef(CardContent))>
+      <FAQListComponent
+        faqs={Array []}
+      />
+      <WithStyles(ForwardRef(Divider)) />
+      <EnlacesListComponent
+        links={Array []}
+      />
+    </WithStyles(ForwardRef(CardContent))>
+  </WithStyles(ForwardRef(Card))>
+</Styled(MuiBox)>
 `;
