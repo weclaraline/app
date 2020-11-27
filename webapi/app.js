@@ -10,7 +10,7 @@ const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
 const recommendationRouter = require("./routes/recommendations");
-const invoicesRouter = require("./routes/invoice.router");
+const invoicesRouter = require("./routes/invoice");
 
 const supportLinksRouter = require("./routes/supportLinks.router");
 

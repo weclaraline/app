@@ -1,8 +1,9 @@
+const route = require('express').Router();
 const RecomendationService = require("../src/services/recomendation/RecomendationService");
 const InvoiceService = require("../src/services/invoices/InvoicesService");
 
-module.exports = function (app) {
-  app.post("/upload", async function (req, res) {
+
+  route.post("/upload", async function (req, res) {
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send("No files were uploaded.");
     }
@@ -14,7 +15,7 @@ module.exports = function (app) {
     res.send(analysisRes);
   });
 
-  app.post("/invoice/commit", async function (req, res) {
+  route.post("/invoice/commit", async function (req, res) {
     const result = await InvoiceService.commitInvoice(
       req.body.uuid,
       req.body.status,
@@ -22,4 +23,11 @@ module.exports = function (app) {
     );
     res.send(result);
   });
-};
+
+
+  route.get('/:month/:year', (req, res) => {
+    InvoiceService.getByDate(req.params, req.headers)
+    .then(result => res.send(result))
+  });
+
+  module.exports = route;
