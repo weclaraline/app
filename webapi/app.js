@@ -12,6 +12,7 @@ const faqRouter = require("./routes/faq.router");
 const recommendationRouter = require("./routes/recommendations");
 const requirementsRouter = require("./routes/requirements");
 const invoicesRouter = require("./routes/invoice");
+const usersRouter = require("./routes/users.router");
 
 const supportLinksRouter = require("./routes/supportLinks.router");
 
@@ -39,7 +40,8 @@ createConnection({
       require("./src/entity/RecomendationSchema"),
       require("./src/entity/RequirementsSchema"),
       require("./src/entity/FaqSchema"),
-      require("./src/entity/SupportLinksSchema")
+      require("./src/entity/SupportLinksSchema"),
+      require("./src/entity/UsersSchema")
   ]
 }).then(() => {
 
@@ -50,7 +52,7 @@ createConnection({
   app.use('/faq', faqRouter);
   app.use('/invoices', invoicesRouter);
   app.use('/links', supportLinksRouter);
-
+  app.use('/users', usersRouter);
   
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
