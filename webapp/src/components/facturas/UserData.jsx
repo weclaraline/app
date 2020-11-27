@@ -38,7 +38,7 @@ const UserData = () => {
         </Grid>
         <Grid item md={3}>
           <Typography align="left" variant="h5" gutterBottom>
-            Email: {userInfo.rfc}
+            Email: {userInfo.email}
           </Typography>
         </Grid>
 

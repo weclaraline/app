@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import ServiceAPI from '../../api/ServiceAPI';
 
 import {getCurrentLoggedUserInfo} from '../../utils/LogIn'
 
@@ -28,21 +28,23 @@ const FileUploader = () => {
   const [concept, setConcept] = useState("");
   const [description, setDescription] = useState("");
   const [total, setTotal] = useState(0);
+  const api = new ServiceAPI();
+
 
   async function uploadFile(file_upload) {
     const data = new FormData();   
     let userId   = await getCurrentLoggedUserInfo();
     data.append('xml', file_upload);
     data.append('uid', userId.googleId);
-    axios
-      .post('http://localhost:3000/upload', data, {
-      })
-      .then((res) => {
-        setFileUUID(res.data.uuid);
-        setConcept(res.data.concept);
-        setDescription(res.data.description);
-        setTotal(res.data.total);
-      });
+
+  api.createRequest().post('invoices/upload',data, {
+    })
+    .then((res) => {
+      setFileUUID(res.data.uuid);
+      setConcept(res.data.concept);
+      setDescription(res.data.description);
+      setTotal(res.data.total);
+    });
   }
 
   return (
