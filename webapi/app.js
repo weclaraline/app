@@ -58,21 +58,6 @@ createConnection({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.post('/upload', function(req, res) {
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('No files were uploaded.');
-//   }
-//   let sampleFile = req.files.xml;
-//   const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.uid)
-//   res.send(analysisRes)
-// });
-
-
-// app.post("/invoice/commit", async function (req, res) {
-//   const result = await InvoiceService.commitInvoice(req.body.uuid, req.body.status);
-//   res.send(result)
-// });
-
 // Avoid CORS error
 app.use(function(req, res, next) {
   const allowedOrigins = [
