@@ -13,7 +13,7 @@ const InvoiceService = require("../src/services/invoices/InvoicesService");
     res.send(analysisRes);
   });
 
-  route.post("/invoice/commit", async function (req, res) {
+  route.post("/commit", async function (req, res) {
     const result = await InvoiceService.commitInvoice(
       req.body.uuid,
       req.body.status,
