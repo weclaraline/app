@@ -7,6 +7,9 @@ const fileUpload = require('express-fileupload');
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
+const recommendationRouter = require("./routes/recommendations");
+const invoicesRouter = require("./routes/invoice.router");
+
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
 }));
@@ -34,8 +37,10 @@ createConnection({
 
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-  require("./routes/recommendations")(app);
+  app.use("/recommendations", recommendationRouter);
   app.use('/faq', faqRouter);
+  app.use('/invoices', invoicesRouter);
+
   
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
