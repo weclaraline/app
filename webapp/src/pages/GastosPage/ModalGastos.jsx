@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-//import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import Icon from '@material-ui/core/Icon';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -22,9 +23,10 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    width: 500,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    borderRadius: '5px',
+    outline: 'none',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -57,18 +59,21 @@ export default function ModalGastos(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {fileUUID}
+      <Icon>add_circle</Icon>
+      Factura Correcta
+      {fileUUID}      
       <p id="simple-modal-description">{concept}</p>
       <p id="simple-modal-description">{description}</p>
       <p id="simple-modal-description">{total}</p>
-      <button
+      <Button
         variant="contained"
         component="label"
         color="primary"
         onClick={() => handleAccept()}
+        className={classes.acceptButton}
       >
         Aceptar
-      </button>
+      </Button>
     </div>
   );
 

@@ -27,7 +27,7 @@ const FileUploader = () => {
   const [fileUUID, setFileUUID] = useState('');
   const [concept, setConcept] = useState('');
   const [description, setDescription] = useState('');
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('');
   const [openModal, setOpenModal] = React.useState(false);
 
   const api = new ServiceAPI();
