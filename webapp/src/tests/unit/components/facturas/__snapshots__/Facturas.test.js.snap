@@ -6,13 +6,13 @@ exports[`Renders original content 1`] = `
   spacing={3}
 >
   <WithStyles(ForwardRef(Grid))
-    className="makeStyles-headerRow-1"
+    className="makeStyles-headerRow-2"
     data-testid="title_banner"
     item={true}
     xs={12}
   >
     <WithStyles(ForwardRef(Paper))
-      className="makeStyles-paper-2"
+      className="makeStyles-paper-3"
       elevation={0}
     >
       <WithStyles(ForwardRef(Typography))
@@ -28,16 +28,28 @@ exports[`Renders original content 1`] = `
     </WithStyles(ForwardRef(Paper))>
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(ForwardRef(Grid))
-    item={true}
-    xs={6}
+    className="makeStyles-detailsContainer-1"
+    container={true}
+    spacing={3}
   >
-    <TipoDeduciblesComponent />
-  </WithStyles(ForwardRef(Grid))>
-  <WithStyles(ForwardRef(Grid))
-    item={true}
-    xs={4}
-  >
-    <FAQEnlacesComponent />
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={8}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Card))>
+        <TipoDeduciblesComponent />
+      </WithStyles(ForwardRef(Card))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={4}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Card))>
+        <FAQEnlacesComponent />
+      </WithStyles(ForwardRef(Card))>
+    </WithStyles(ForwardRef(Grid))>
   </WithStyles(ForwardRef(Grid))>
 </WithStyles(ForwardRef(Grid))>
 `;

@@ -1,5 +1,5 @@
 
-class Faq {
+class FAQ {
     constructor(question, answer) {
         this.question = question;
         this.answer = answer;
@@ -7,4 +7,4 @@ class Faq {
     }
 }
 
-module.exports = { FAQ : Faq };
+module.exports = { FAQ };

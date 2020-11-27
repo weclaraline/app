@@ -1,11 +1,12 @@
+import { Grid, Typography } from "@material-ui/core";
 import propTypes from "prop-types";
 import React from "react";
 
 const TipoDeduciblesComponent = () => {
     return (
-        <div data-testid="lista_tipo_deducibles">
-            Hola, contendré las recomendaciones.
-        </div>
+        <Grid container data-testid="lista_tipo_deducibles">
+            <Typography variant="subtitle2">Conceptos</Typography>
+        </Grid>
     );
 }
 

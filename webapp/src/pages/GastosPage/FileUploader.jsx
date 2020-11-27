@@ -24,48 +24,55 @@ const useStyles = makeStyles(() =>
 
 const FileUploader = () => {
   const classes = useStyles();
-  const [file, setFile] = useState();
+  const [fileUUID, setFileUUID] = useState();
+  const [concept, setConcept] = useState("");
+  const [description, setDescription] = useState("");
+  const [total, setTotal] = useState(0);
 
-  const handleChangeFile = async (value) => {
-    setFile(value);
-    console.log(await getCurrentLoggedUserInfo())
-    console.log('getCurrentLoggedUserInfo()')
-  };
-
-  function uploadFile() {
-    const data = new FormData();
-    data.append('xml', file);
+  async function uploadFile(file_upload) {
+    const data = new FormData();   
+    let userId   = await getCurrentLoggedUserInfo();
+    data.append('xml', file_upload);
+    data.append('uid', userId.googleId);
     axios
       .post('http://localhost:3000/upload', data, {
       })
       .then((res) => {
-        console.log(res);
+        setFileUUID(res.data.uuid);
+        setConcept(res.data.concept);
+        setDescription(res.data.description);
+        setTotal(res.data.total);
       });
   }
 
   return (
     <Paper className={classes.container}>
+
       <Container>
         <Grid container spacing={4}>
-          <Grid item md={3}>
-            <Typography variant="h5" gutterBottom>
-              Facturas
-            </Typography>
-            <Button variant="contained" component="label">
+            <Grid item md={3}>
+              <Typography variant="h5" gutterBottom>
+                Facturas
+              </Typography>
+            </Grid>
+        </Grid>
+      </Container>
+      <Container>
+        <Grid container spacing={4}>
+        <Grid item md={4}>
+            <Button variant="contained" component="label" color="primary">
               SELECCIONAR FACTURA
               <input
                 type="file"
                 hidden
-                onChange={(event) => handleChangeFile(event.target.files[0])}
+                onChange={(event) => uploadFile(event.target.files[0])}                
               />
             </Button>
-          </Grid>
-          <Grid item md={3}>
-            <Button variant="contained" color="primary" component="label" onClick={uploadFile}>
-              CARGAR FACTURA
-            </Button>
-          </Grid>
+            </Grid>
         </Grid>
+        <p>
+            {fileUUID} {concept} {description} {total}
+        </p>
       </Container>
     </Paper>
   );

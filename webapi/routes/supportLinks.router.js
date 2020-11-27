@@ -1,19 +1,19 @@
 const route = require('express').Router();
-const FAQService = require('../src/services/FAQ/FAQService');
+const SupportLinksService = require('../src/services/SupportLinks/SupportLinksService');
 
 route.post('/', (req, res) => {
-    FAQService.addQuestionAndAnswer(req.body.question, req.body.answer)
+    SupportLinksService.addSupportLink(req.body.link, req.body.description)
         .then(result => res.status(200).send({message : result}));
 });
 
 route.get('/', (req, res) => {
-    FAQService.getQuestionsAndAnswers()
+    SupportLinksService.getSupportLinks()
         .then(result => res.send(result));
 });
 
 route.get('/:id', (req, res) => {
     let id = req.params.id;
-    FAQService.getQuestionsAndAnswers(id)
+    SupportLinksService.getSupportLinks(id)
         .then(result => res.send(result));
 });
 
