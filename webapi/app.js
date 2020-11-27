@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const { createConnection } = require('typeorm');
 const app = express();
 const port = 3000;
+const portFrontEnd = 5000;
 const fileUpload = require('express-fileupload'); 
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
@@ -65,3 +66,16 @@ app.use(bodyParser.json());
 //   res.send(result)
 // });
 
+// Avoid CORS error
+app.use(function(req, res, next) {
+  const allowedOrigins = [
+    `http://localhost:${portFrontEnd}`, 
+    `http://localhost:${port}`
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }  
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
