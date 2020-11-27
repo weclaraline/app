@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const { createConnection } = require('typeorm');
 const app = express();
@@ -9,6 +10,7 @@ const InvoiceService = require("./src/services/invoices/InvoicesService");
 const faqRouter = require("./routes/faq.router");
 const supportLinksRouter = require("./routes/supportLinks.router");
 
+app.use(cors());
 app.use(fileUpload({
   limits: { fileSize: 1 * 1024 * 1024 },
 }));
