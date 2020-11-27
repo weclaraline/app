@@ -10,6 +10,7 @@ const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
 const recommendationRouter = require("./routes/recommendations");
+const requirementsRouter = require("./routes/requirements");
 const invoicesRouter = require("./routes/invoice");
 
 const supportLinksRouter = require("./routes/supportLinks.router");
@@ -36,6 +37,7 @@ createConnection({
       require("./src/entity/PostSchema"),
       require("./src/entity/InvoiceSchema"),
       require("./src/entity/RecomendationSchema"),
+      require("./src/entity/RequirementsSchema"),
       require("./src/entity/FaqSchema"),
       require("./src/entity/SupportLinksSchema")
   ]
@@ -44,6 +46,7 @@ createConnection({
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use("/recommendations", recommendationRouter);
+  app.use("/requirements", requirementsRouter);
   app.use('/faq', faqRouter);
   app.use('/invoices', invoicesRouter);
   app.use('/links', supportLinksRouter);

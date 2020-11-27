@@ -6,6 +6,7 @@ const xmlParser = require("../../lib/utils/XMLParser");
 const InvoiceAnalyzer = require("../../lib/analysis/InvoiceAnalyzer");
 
 const { getDate } = require("../../lib/InvoiceFieldResolver");
+const commited = "save";
 
 async function processUpload(fileData, uid) {
   var str = fileData.toString("utf-8");
@@ -76,6 +77,7 @@ async function getByDate({ month = 01, year= 2020 }, { userid }) {
     .where("EXTRACT(MONTH FROM invoice.date) = :month", { month })
     .andWhere("EXTRACT(YEAR FROM invoice.date) = :year", { year })
     .andWhere("invoice.ownerId = :userId", { userId: userid })
+    .andWhere("invoice.commited = :commited", { commited })
     .getMany();
 }
 
