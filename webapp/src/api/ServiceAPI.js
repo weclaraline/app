@@ -5,7 +5,7 @@ class ServiceAPI {
     
     constructor(){}
 
-    createRequest(path) {
+    createRequest() {
         return axios
         .create({
             baseURL: this.getBaseURL(),

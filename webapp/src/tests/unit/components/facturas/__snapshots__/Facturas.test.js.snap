@@ -29,7 +29,7 @@ exports[`Renders original content 1`] = `
   </WithStyles(ForwardRef(Grid))>
   <WithStyles(ForwardRef(Grid))
     item={true}
-    xs={6}
+    xs={8}
   >
     <TipoDeduciblesComponent />
   </WithStyles(ForwardRef(Grid))>

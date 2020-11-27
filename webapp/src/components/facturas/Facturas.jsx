@@ -52,7 +52,7 @@ const Facturas = () => {
                     </Typography>
                 </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={8}>
                 <ConceptoDeduciblesComponent />
             </Grid>
             <Grid item xs={4}>
