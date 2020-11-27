@@ -70,7 +70,17 @@ async function deleteInvoicebyUUID(uuid) {
     .delete({ UUID: uuid });
 }
 
+async function getByDate({ month = 01, year= 2020 }, { userid }) {
+  return getManager()
+    .createQueryBuilder(entity, "invoice")
+    .where("EXTRACT(MONTH FROM invoice.date) = :month", { month })
+    .andWhere("EXTRACT(YEAR FROM invoice.date) = :year", { year })
+    .andWhere("invoice.ownerId = :userId", { userId: userid })
+    .getMany();
+}
+
 module.exports = {
   processUpload: processUpload,
   commitInvoice: commitInvoice,
+  getByDate,
 };

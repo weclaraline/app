@@ -9,6 +9,9 @@ const fileUpload = require('express-fileupload');
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
+const recommendationRouter = require("./routes/recommendations");
+const invoicesRouter = require("./routes/invoice.router");
+
 const supportLinksRouter = require("./routes/supportLinks.router");
 
 app.use(cors());
@@ -40,10 +43,9 @@ createConnection({
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-
-  require("./routes/recommendations")(app);
+  app.use("/recommendations", recommendationRouter);
   app.use('/faq', faqRouter);
-  require("./routes/invoice")(app);
+  app.use('/invoices', invoicesRouter);
   app.use('/links', supportLinksRouter);
 
   
