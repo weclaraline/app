@@ -38,7 +38,7 @@ exports[`Renders original content 1`] = `
       xs={12}
     >
       <WithStyles(ForwardRef(Card))>
-        <TipoDeduciblesComponent />
+        <ConceptoDeduciblesComponent />
       </WithStyles(ForwardRef(Card))>
     </WithStyles(ForwardRef(Grid))>
     <WithStyles(ForwardRef(Grid))

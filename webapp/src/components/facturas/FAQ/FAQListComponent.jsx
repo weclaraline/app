@@ -1,11 +1,11 @@
-import React from "react";
-import Typography from '@material-ui/core/Typography'; 
 import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import propTypes from "prop-types";
+import React from "react";
 
 const FAQListComponent = ({ faqs }) => {
     const listContent = (

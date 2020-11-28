@@ -1,15 +1,15 @@
-import axios from 'axios';
-import http from 'axios/lib/adapters/http';
+import axios from "axios";
+import httpAdapter from "axios/lib/adapters/http";
 
 class ServiceAPI {
     
-    constructor(){}
+    constructor() {}
 
     createRequest() {
         return axios
         .create({
             baseURL: this.getBaseURL(),
-            adapter: http
+            adapter: httpAdapter
         });
     }
 
@@ -18,7 +18,8 @@ class ServiceAPI {
     }
 
     getBaseURL() {
-        return process.env.NODE_ENV === "production" ? "http://api.weclaraline.testmyapp.info/" : "http://localhost:3000";
+        return "http://api.weclaraline.testmyapp.info";
+        // return process.env.NODE_ENV === "production" ? "http://api.weclaraline.testmyapp.info/" : "http://localhost:3000";
     }
 }
 
