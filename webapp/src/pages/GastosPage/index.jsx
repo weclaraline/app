@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../../components/Container';
 import Graphs from './Graphs';
 import FileUploader from './FileUploader';
+import InvoicesList from './InvoicesList';
 
 
 const Gastos = () => (
@@ -10,6 +11,7 @@ const Gastos = () => (
       <h1>Página de Gastos.</h1>
       <FileUploader></FileUploader>
       <Graphs />
+      <InvoicesList />
     </div>
   </Container>
 );
