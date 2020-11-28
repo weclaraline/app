@@ -1,22 +1,24 @@
 const EntitySchema = require("typeorm").EntitySchema;
-const Recomendation = require("../model/Recomendation").Recomendation;
+const Users = require("../model/Users").Users;
 
 module.exports = new EntitySchema({
-    name: "Recomendation",
-    target: Recomendation,
+    name: "Users",
+    target: Users,
     columns: {
         id: {
             primary: true,
-            type: "int",
-            generated: true
-        },
-        key: {
             type: "varchar"
         },
-        concept: {
+        name: {
             type: "varchar"
         },
-        text: {
+        email: {
+            type: "varchar"
+        },
+        rfc: {
+            type: "text"
+        },
+        address: {
             type: "text"
         }
     }

@@ -4,10 +4,16 @@ const bodyParser = require('body-parser');
 const { createConnection } = require('typeorm');
 const app = express();
 const port = 3000;
+const portFrontEnd = 5000;
 const fileUpload = require('express-fileupload'); 
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
 const faqRouter = require("./routes/faq.router");
+const recommendationRouter = require("./routes/recommendations");
+const requirementsRouter = require("./routes/requirements");
+const invoicesRouter = require("./routes/invoice");
+const usersRouter = require("./routes/users.router");
+
 const supportLinksRouter = require("./routes/supportLinks.router");
 
 app.use(cors());
@@ -32,19 +38,21 @@ createConnection({
       require("./src/entity/PostSchema"),
       require("./src/entity/InvoiceSchema"),
       require("./src/entity/RecomendationSchema"),
+      require("./src/entity/RequirementsSchema"),
       require("./src/entity/FaqSchema"),
-      require("./src/entity/SupportLinksSchema")
+      require("./src/entity/SupportLinksSchema"),
+      require("./src/entity/UsersSchema")
   ]
 }).then(() => {
 
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-
-  require("./routes/recommendations")(app);
+  app.use("/recommendations", recommendationRouter);
+  app.use("/requirements", requirementsRouter);
   app.use('/faq', faqRouter);
-  require("./routes/invoice")(app);
+  app.use('/invoices', invoicesRouter);
   app.use('/links', supportLinksRouter);
-
+  app.use('/users', usersRouter);
   
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
@@ -55,18 +63,16 @@ createConnection({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.post('/upload', function(req, res) {
-//   if (!req.files || Object.keys(req.files).length === 0) {
-//     return res.status(400).send('No files were uploaded.');
-//   }
-//   let sampleFile = req.files.xml;
-//   const analysisRes = InvoiceService.processUpload(sampleFile.data, req.body.uid)
-//   res.send(analysisRes)
-// });
-
-
-// app.post("/invoice/commit", async function (req, res) {
-//   const result = await InvoiceService.commitInvoice(req.body.uuid, req.body.status);
-//   res.send(result)
-// });
-
+// Avoid CORS error
+app.use(function(req, res, next) {
+  const allowedOrigins = [
+    `http://localhost:${portFrontEnd}`, 
+    `http://localhost:${port}`
+  ];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }  
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});

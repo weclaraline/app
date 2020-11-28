@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
-import {getCurrentLoggedUserInfo} from '../../utils/LogIn'
+import ServiceAPI from '../../api/ServiceAPI';
+import ModalGastos from './ModalGastos';
+import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
 
 import {
   Paper,
@@ -24,48 +24,68 @@ const useStyles = makeStyles(() =>
 
 const FileUploader = () => {
   const classes = useStyles();
-  const [file, setFile] = useState();
+  const [fileUUID, setFileUUID] = useState('');
+  const [concept, setConcept] = useState('');
+  const [description, setDescription] = useState('');
+  const [total, setTotal] = useState(0);
+  const [openModal, setOpenModal] = React.useState(false);
 
-  const handleChangeFile = (value) => {
-    setFile(value);
-  };
+  const api = new ServiceAPI();
 
-  async function uploadFile() {
+  async function uploadFile(file_upload) {
     const data = new FormData();
-    let userId   = await getCurrentLoggedUserInfo();
-    data.append('xml', file);
+    let userId = await getCurrentLoggedUserInfo();
+    data.append('xml', file_upload);
     data.append('uid', userId.googleId);
-    axios
-      .post('http://localhost:3000/upload', data, {
-      })
+
+    api
+      .createRequest()
+      .post('invoices/upload', data, {})
       .then((res) => {
-        console.log(res);
+        setFileUUID(res.data.uuid);
+        setConcept(res.data.concept);
+        setDescription(res.data.description);
+        setTotal(res.data.total);
+        setOpenModal(true);
       });
   }
 
   return (
     <Paper className={classes.container}>
+      {
+        <ModalGastos
+          fileUUID={fileUUID}
+          concept={concept}
+          description={description}
+          total={total}
+          openModal={openModal}
+        ></ModalGastos>
+      }
       <Container>
         <Grid container spacing={4}>
           <Grid item md={3}>
             <Typography variant="h5" gutterBottom>
               Facturas
             </Typography>
-            <Button variant="contained" component="label">
+          </Grid>
+        </Grid>
+      </Container>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid item md={4}>
+            <Button variant="contained" component="label" color="primary">
               SELECCIONAR FACTURA
               <input
                 type="file"
                 hidden
-                onChange={(event) => handleChangeFile(event.target.files[0])}
+                onChange={(event) => uploadFile(event.target.files[0])}
               />
             </Button>
           </Grid>
-          <Grid item md={3}>
-            <Button variant="contained" color="primary" component="label" onClick={uploadFile}>
-              CARGAR FACTURA
-            </Button>
-          </Grid>
         </Grid>
+        <p>
+          {fileUUID} {concept} {description} {total}
+        </p>
       </Container>
     </Paper>
   );

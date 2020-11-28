@@ -1,9 +1,9 @@
 const EntitySchema = require("typeorm").EntitySchema;
-const Recomendation = require("../model/Recomendation").Recomendation;
+const Requirements = require("../model/Requirements").Requirements;
 
 module.exports = new EntitySchema({
-    name: "Recomendation",
-    target: Recomendation,
+    name: "Requirements",
+    target: Requirements,
     columns: {
         id: {
             primary: true,
