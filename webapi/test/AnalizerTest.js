@@ -10,6 +10,10 @@ const filePathCashPaid =
   "/Users/luis.tejeda/Documents/Source/GitHub/weclaraline/app/webapi/XML/sgmefectivo.xml";
 const filePathHMOOtros =
   "/Users/luis.tejeda/Documents/Source/GitHub/weclaraline/app/webapi/XML/hmotrosconceptos.xml";
+const filePathScolarhship =
+  "/Users/luis.tejeda/Documents/Source/GitHub/weclaraline/app/webapi/XML/col.xml";
+  const filePathInvalid =
+  "/Users/luis.tejeda/Documents/Source/GitHub/weclaraline/app/webapi/XML/invalid.xml";
 
 describe("InvoiceAnalyzer", function () {
   describe("Analyze", function () {
@@ -47,10 +51,38 @@ describe("InvoiceAnalyzer", function () {
 
       const res = analyzer.analyze(parsed, "desc");
       assert.strictEqual(res.analysisResult.status, "notok");
-      console.log(res);
-
       assert.strictEqual(res.analysisResult.observations[0].code, '1');
       assert.strictEqual(res.analysisResult.observations[1].code, '2');
     });
   });
+
+
+  describe("Analyze", function () {
+    it("return everything is ok in a perfect scolarship tarif invoice", async function () {
+      const data = await fileReader.readFile(filePathScolarhship);
+      const parsed = XMLParser.ParseXMLString(data);
+
+      let analyzer = new InvoiceAnalyzer();
+
+      const res = analyzer.analyze(parsed, "desc");
+      assert.strictEqual(res.analysisResult.status, "ok");
+    });
+  });
+
+  describe("Analyze", function () {
+    it("returns a clear error when attempting to analyze an unsoported file", async function () {
+      const data = await fileReader.readFile(filePathInvalid);
+      const parsed = XMLParser.ParseXMLString(data);
+
+      let analyzer = new InvoiceAnalyzer();
+
+      const res = analyzer.analyze(parsed, "desc");
+      console.log(res);
+
+      assert.strictEqual(res.analysisResult.status, "notok");
+      assert.strictEqual(res.analysisResult.observations[0].code, '3');
+
+    });
+  });
+
 });
