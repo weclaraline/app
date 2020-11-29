@@ -111,7 +111,7 @@ export default function ModalGastos(props) {
     api
       .createRequest()
       .post('invoices/commit', data, {})
-      .then((res) => {
+      .then(() => {
         setOpen(false);
         setDescriptionValue('');        
       })
@@ -202,7 +202,7 @@ export default function ModalGastos(props) {
       </Grid>
     );
     bodyDescription = (
-      <TextField multiline rowsMin={4} rowsMax={4} rows={3}
+      <TextField multiline rowsmin={4} rowsmax={4} rows={3}
         variant='outlined'       
         placeholder='Agrega una descripción'
         className={ classes.textareaDescription }

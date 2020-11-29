@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ServiceAPI from '../../api/ServiceAPI';
 import ModalGastos from './ModalGastos';
 import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
+import Box from '@material-ui/core/Box';
 
 import {
   Paper,
@@ -79,16 +80,12 @@ const FileUploader = () => {
       }
       <Container>
         <Grid container spacing={4}>
-          <Grid item md={3}>
-            <Typography variant="h5" gutterBottom>
-              Facturas
+          <Grid item xs className={classes.expensesInovicesTitle}>
+            <Typography variant="h6" gutterBottom>
+              <Box fontWeight="fontWeightBold">
+                Facturas
+              </Box>
             </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-      <Container>
-        <Grid container spacing={4}>
-          <Grid item md={4}>
             <Button variant="contained" component="label" color="primary">
               SELECCIONAR FACTURA
               <input
@@ -96,14 +93,25 @@ const FileUploader = () => {
                 hidden
                 onChange={(event) => uploadFile(event)}
               />
-            </Button>
+            </Button>            
+          </Grid>
+          <Grid item xs>
+            <Typography variant="h6" gutterBottom>
+              <Box fontWeight="fontWeightBold">
+                Últimas facturas añadidas
+              </Box>
+            </Typography>
           </Grid>
         </Grid>
-        <p>
-          {fileUUID} {concept} {description} {total}
-        </p>
+        
       </Container>
-    </Paper>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid item md={4}>
+          </Grid>
+        </Grid>
+      </Container>
+      </Paper>
   );
 };
 
