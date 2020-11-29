@@ -1,22 +1,22 @@
 import { Typography, Grid, Paper } from '@material-ui/core';
-import React , { useState }from 'react';
+import React, { useState } from 'react';
+import ServiceAPI from '../../api/ServiceAPI';
+import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
 
 const UserData = () => {
   const [userInfo, setUserInfo] = useState({});
 
-  const fetchUserData =   () => {
-    // const res = await api.createRequest().get('userInfo');
-    // setUserInfo(res);
-    setUserInfo({
-          name: "Luis Alfredo Tejeda",
-          rfc:"tesl881223nf1",
-          email:"luis.tejeda@wizeline.com",
-          address : "camino real a colima 51500"
-      })
+  const fetchUserData = async () => {
+    const api = new ServiceAPI();
+    const userInfo = await getCurrentLoggedUserInfo();
+    const res = await api.createRequest(userInfo.googleId).get('users');
+    if (res.data.length > 0) {
+      setUserInfo(res.data[0]);
+    }
   };
 
-  React.useEffect( () => {
-      fetchUserData();
+  React.useEffect(() => {
+    fetchUserData();
   }, []);
 
   return (
@@ -27,7 +27,7 @@ const UserData = () => {
       <Grid container alignItems="flex-start" spacing={1}>
         <Grid item md={3}>
           <Typography align="left" variant="h5" gutterBottom>
-            Nombre:  {userInfo.name}
+            Nombre: {userInfo.name}
           </Typography>
         </Grid>
 
