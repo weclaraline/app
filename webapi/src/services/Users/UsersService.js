@@ -8,10 +8,9 @@ async function post(
 ) {
   const user = new Users(userid, name, rfc, address, email);
 
-  const found = get(userid);
-
-  if (found) {
-    return found;
+  const found = await get({ 'userid': userid });
+  if (found.length > 0) {
+    return found[0];
   }
 
   const insertResult = await getManager().getRepository(usersEntity).save(user);
