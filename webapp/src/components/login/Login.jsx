@@ -11,14 +11,13 @@ const api = new ServiceAPI();
 const onSucessResponse = async (response) => {
   await setCurrentLoggedUserInfo(response);
   const userInfo = await getCurrentLoggedUserInfo();
-
   const data = new FormData();
   data.append('name', userInfo.name);
   data.append('email', userInfo.email);
   data.append('rfc', '');
   data.append('address', '');
   console.log('calling service register' + userInfo.googleId)
-  api
+  await api
     .createRequest(userInfo.googleId)
     .post('users', data, {})
     .then(()=>{

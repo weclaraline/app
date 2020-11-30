@@ -23,7 +23,7 @@ app.use(fileUpload({
 }));
 
 app.get('/', (req, res) => {
-  res.send('Hello Weclaraline!')
+  res.send('Hello Weclaraline! 0.002')
 })
 app.use(bodyParser.urlencoded({ extended: true }));
 createConnection({
