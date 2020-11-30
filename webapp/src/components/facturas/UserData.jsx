@@ -44,7 +44,7 @@ const UserData = () => {
 
         <Grid item md={4}>
           <Typography align="left" variant="h5" gutterBottom>
-            Direccion: {userInfo.address}
+            Dirección: {userInfo.address}
           </Typography>
         </Grid>
       </Grid>
