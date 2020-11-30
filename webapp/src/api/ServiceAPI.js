@@ -21,8 +21,8 @@ class ServiceAPI {
     }
 
     getBaseURL() {
-        //return "http://api.weclaraline.testmyapp.info";
-        return "http://localhost:3000";
+        return "http://api.weclaraline.testmyapp.info";
+        //return "http://localhost:3000";
 
         // return process.env.NODE_ENV === "production" ? "http://api.weclaraline.testmyapp.info/" : "http://localhost:3000";
     }
