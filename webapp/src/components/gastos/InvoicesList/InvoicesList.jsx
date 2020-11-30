@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => {
   return ({
     container: {
       padding: '30px',
-      margin: '15px 0',
       minHeight: '300px',
     },
     table: {

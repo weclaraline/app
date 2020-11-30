@@ -1,14 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders original content 1`] = `
-<Container>
-  <div>
-    <h1>
-      Página de Gastos.
-    </h1>
-    <FileUploader />
-    <Graphs />
-    <InvoicesList />
-  </div>
-</Container>
+<WithStyles(ForwardRef(Grid))
+  container={true}
+>
+  <WithStyles(ForwardRef(Grid))
+    className="makeStyles-headerRow-2"
+    data-testid="title_banner"
+    item={true}
+    spacing={3}
+    xs={12}
+  >
+    <WithStyles(ForwardRef(Paper))
+      className="makeStyles-paper-3"
+      elevation={0}
+    >
+      <WithStyles(ForwardRef(Typography))
+        variant="h4"
+      >
+        Mis Gastos y límites
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        variant="h6"
+      >
+        Sigue los pasos para que fácilmente...
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(Paper))>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    className="makeStyles-detailsContainer-1"
+    container={true}
+    spacing={3}
+  >
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={12}
+      xs={12}
+    >
+      <FileUploader />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={12}
+      xs={12}
+    >
+      <Graphs />
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
+      lg={12}
+      xs={12}
+    >
+      <InvoicesList />
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
 `;
