@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => {
       minHeight: '300px',
     },
     table: {
-        margin: theme.spacing(1),
         minWidth: 650,
     },
     tableHead: {
