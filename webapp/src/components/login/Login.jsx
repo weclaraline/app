@@ -17,7 +17,7 @@ const onSucessResponse = async (response) => {
   data.append('email', userInfo.email);
   data.append('rfc', '');
   data.append('address', '');
-  
+  console.log('calling service register' + userInfo.googleId)
   api
     .createRequest(userInfo.googleId)
     .post('users', data, {})
