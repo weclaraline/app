@@ -57,9 +57,8 @@ const FileUploader = () => {
         setOpenModal(true);
         event.target.value = null;
       })
-      .catch((err) => {
+      .catch(() => {
         setStatus('error');
-        setDescription(String(err));
         setOpenModal(true);
         event.target.value = null;
       });

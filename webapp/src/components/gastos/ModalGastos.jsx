@@ -139,7 +139,7 @@ export default function ModalGastos(props) {
             {descriptionValue}
         </Typography>
         <Typography variant="body">
-            Please verify your internet connection.
+          Por favor revisa tu conexión a internet.
         </Typography>
       </div>  
     ); 
@@ -214,14 +214,14 @@ export default function ModalGastos(props) {
       <Box fontWeight="fontWeightBold">
           Saldo total deducible por gastos médicos:
           <Typography variant="h6">
-            $ XX,XXX
+            $ {total}
           </Typography>
       </Box>      
     );
 
     // Sample
     observations = [
-      {description: 'Ya casi alcanzas el monto máximo deducible en este concepto ($XX,000.00)'}
+      //{description: 'Ya casi alcanzas el monto máximo deducible en este concepto ($XX,000.00)'}
     ]
 
     bodyButtonMethod = handleAccept;
