@@ -10,8 +10,8 @@ import {
     TableRow, 
     TableContainer,
 } from '@material-ui/core';
-import ServiceAPI from '../../api/ServiceAPI';
-import {getCurrentLoggedUserInfo} from '../../utils/LogIn'
+import ServiceAPI from '../../../api/ServiceAPI';
+import {getCurrentLoggedUserInfo} from '../../../utils/LogIn'
 import InvoicesListFilters from './InvoicesListFilters';
 
 const useStyles = makeStyles((theme) => {
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => {
     container: {
       padding: '30px',
       margin: '15px 0',
+      minHeight: '300px',
     },
     table: {
         margin: theme.spacing(1),
