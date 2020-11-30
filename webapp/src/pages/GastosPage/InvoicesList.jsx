@@ -48,8 +48,8 @@ const InvoicesList = () => {
 
     const getList = async (month, year) => { 
         let userInfo = await getCurrentLoggedUserInfo();
-        api.createRequest()
-            .get(`invoices/${month}/${year}`, { headers: { userId: userInfo.googleId }})
+        api.createRequest(userInfo.googleId)
+            .get(`invoices/${month}/${year}`)
             .then((res) => setList(res.data));
     }
 
