@@ -27,27 +27,27 @@ const Graphs = () => {
         <Grid container spacing={4}>
           <Grid item md={3}>
             <Typography variant="h6" gutterBottom>
-              KPI
+              Gastos médicos
+            </Typography>
+            <CircularProgressbar value={35} text={`${35}%`} />
+          </Grid>
+          <Grid item md={3}>
+            <Typography variant="h6" gutterBottom>
+              Seguros
             </Typography>
             <CircularProgressbar value={55} text={`${55}%`} />
           </Grid>
           <Grid item md={3}>
             <Typography variant="h6" gutterBottom>
-              KPI
+              Colegiaturas
             </Typography>
-            <CircularProgressbar value={55} text={`${55}%`} />
+            <CircularProgressbar value={39} text={`${39}%`} />
           </Grid>
           <Grid item md={3}>
             <Typography variant="h6" gutterBottom>
-              KPI
+              Total
             </Typography>
-            <CircularProgressbar value={55} text={`${55}%`} />
-          </Grid>
-          <Grid item md={3}>
-            <Typography variant="h6" gutterBottom>
-              KPI
-            </Typography>
-            <CircularProgressbar value={55} text={`${55}%`} />
+            <CircularProgressbar value={33} text={`${33}%`} />
           </Grid>
         </Grid>
       </Container>
