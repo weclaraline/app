@@ -13,6 +13,8 @@ import { Grid, Typography, TextField } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 
 import ServiceAPI from '../../api/ServiceAPI';
+import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
+
 
 function getModalStyle() {
   const top = 52;
@@ -97,8 +99,8 @@ export default function ModalGastos(props) {
     setDescriptionValue('');
   };
 
-  const handleAccept = () => {
-    
+  const handleAccept = async () => {
+    const userInfo = await getCurrentLoggedUserInfo();
     setOpen(false);
 
     const api = new ServiceAPI();
@@ -107,6 +109,7 @@ export default function ModalGastos(props) {
     data.append('status', 'save');
     data.append('description', descriptionValue);
     data.append('uuid', fileUUID);
+    data.append('uid', userInfo.googleId);
     
     api
       .createRequest()
