@@ -18,9 +18,9 @@ async function processUpload(fileData, uid) {
   return analysisResult;
 }
 
-async function commitInvoice(uuid, status, description) {
+async function commitInvoice(uuid, status, description, uid) {
   if (status === "save") {
-    let persisted = await GetbyUUID(uuid);
+    let persisted = await GetbyUUID(uuid, uid);
     persisted.commited = status;
     persisted.description = description;
     update(persisted);
@@ -48,12 +48,13 @@ async function create(invoice) {
   const insertResult = await getManager().getRepository(entity).save(invoice);
 }
 
-async function GetbyUUID(uuid) {
+async function GetbyUUID(uuid, uid) {
   const resultData = await getManager()
     .getRepository(entity)
     .findOne({
       where: {
         UUID: uuid,
+        ownerId: uid
       },
     });
     return resultData;

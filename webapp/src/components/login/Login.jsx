@@ -2,11 +2,27 @@
 import GoogleLogin from "react-google-login";
 import "./Login.css";
 import React from "react";
-import { setCurrentLoggedUserInfo } from "../../utils/LogIn";
+import { getCurrentLoggedUserInfo, setCurrentLoggedUserInfo } from '../../utils/LogIn';
 import { LogoBlue } from "../../assets/"
+import ServiceAPI from '../../api/ServiceAPI';
+
+const api = new ServiceAPI();
 
 const onSucessResponse = async (response) => {
   await setCurrentLoggedUserInfo(response);
+  const userInfo = await getCurrentLoggedUserInfo();
+  const data = new FormData();
+  data.append('name', userInfo.name);
+  data.append('email', userInfo.email);
+  data.append('rfc', '');
+  data.append('address', '');
+  console.log('calling service register' + userInfo.googleId)
+  await api
+    .createRequest(userInfo.googleId)
+    .post('users', data, {})
+    .then(()=>{
+      console.log('User has been registered');
+    })
   window.location.reload();
 }
 

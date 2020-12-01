@@ -5,11 +5,14 @@ class ServiceAPI {
     
     constructor() {}
 
-    createRequest() {
+    createRequest( googleId ) {
         return axios
         .create({
             baseURL: this.getBaseURL(),
-            adapter: httpAdapter
+            adapter: httpAdapter,
+            headers: {
+                'userid': googleId
+              }
         });
     }
 
@@ -18,8 +21,7 @@ class ServiceAPI {
     }
 
     getBaseURL() {
-        return "http://api.weclaraline.testmyapp.info";
-        // return process.env.NODE_ENV === "production" ? "http://api.weclaraline.testmyapp.info/" : "http://localhost:3000";
+        return "http://api.weclaraline.tePstmyapp.info";
     }
 }
 

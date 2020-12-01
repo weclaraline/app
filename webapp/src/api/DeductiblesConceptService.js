@@ -1,6 +1,6 @@
 import ServiceAPI from "./ServiceAPI"
-
-class ConceptoDeducibleService extends ServiceAPI {
+import { getCurrentLoggedUserGoogleId } from "../utils/LogIn";
+class DeductiblesConceptService extends ServiceAPI {
     
     constructor(ConceptoDeducibleRequest){
         super();
@@ -9,10 +9,10 @@ class ConceptoDeducibleService extends ServiceAPI {
 
     async make(){
         const { data } = await this
-                        .createRequest()
+                        .createRequest( getCurrentLoggedUserGoogleId() )
                         .get("/recommendations",this.request);
         return data;
     }
 }
 
-export default ConceptoDeducibleService;
+export default DeductiblesConceptService;

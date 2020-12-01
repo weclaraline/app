@@ -35,12 +35,12 @@ const UserApp = (proceed) =>
   );
 
 function App() {
-  const [proceed, setProceed] = useState(false);
+  const [loggedUserData, setLoggedUserData] = useState(false);
 
   useEffect(async () => {
-    if (!proceed) {
+    if (!loggedUserData) {
       const loggedIn = await isUserLoggedIn();
-      setProceed(loggedIn);
+      setLoggedUserData(loggedIn);
     }
   });
 

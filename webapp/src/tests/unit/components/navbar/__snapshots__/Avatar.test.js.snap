@@ -2,16 +2,17 @@
 
 exports[`Renders original content 1`] = `
 <div>
-  <WithStyles(ForwardRef(Button))
+  <WithStyles(ForwardRef(IconButton))
     onClick={[Function]}
+    size="small"
   >
     <WithStyles(ForwardRef(Avatar)) />
-  </WithStyles(ForwardRef(Button))>
+  </WithStyles(ForwardRef(IconButton))>
   <WithStyles(ForwardRef(Menu))
     anchorEl={null}
     anchorOrigin={
       Object {
-        "horizontal": "left",
+        "horizontal": "right",
         "vertical": "bottom",
       }
     }

@@ -25,15 +25,15 @@ const connection = () => (
 );
 
     describe("ORM CRUD", function () {
-        describe("Create", function () {
-          it("return everything is ok on a perfect insert", async function () {
-            await connection();
-            const tests = new Post("Test22", "some tests");
-            const insertResult = await getManager().getRepository(entity).save(tests);
-            console.log(insertResult.id);
-            assert.strictEqual(insertResult.id, 14);
-          });
-        });
+        // describe("Create", function () {
+        //   it("return everything is ok on a perfect insert", async function () {
+        //     await connection();
+        //     const tests = new Post("Test22", "some tests");
+        //     const insertResult = await getManager().getRepository(entity).save(tests);
+        //     console.log(insertResult.id);
+        //     assert.strictEqual(insertResult.id, 14);
+        //   });
+        // });
 
 
         // describe("GET ONE", function () {

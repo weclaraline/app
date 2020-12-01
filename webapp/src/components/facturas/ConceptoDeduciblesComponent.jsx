@@ -1,16 +1,16 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { ConceptoDeducibleService } from "../../api/";
+import { DeductiblesConceptService } from "../../api/";
 import ConceptosDeduciblesListComponent from "../facturas/ConceptosDeducibles/ConceptosDeduciblesListComponent";
 
-const conceptoDeducibleService = new ConceptoDeducibleService({});
+const deductiblesConceptService = new DeductiblesConceptService({});
 
 const ConceptoDeduciblesComponent = () => {
 
     const [conceptosDeducibles, setConceptosDeducibles] = useState([]);
     
     const fetchConceptosDeducibles = async () => {
-        const data = await conceptoDeducibleService.make();
+        const data = await deductiblesConceptService.make();
         setConceptosDeducibles(data);
     }
 
