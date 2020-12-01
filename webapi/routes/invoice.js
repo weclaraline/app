@@ -17,7 +17,8 @@ const InvoiceService = require("../src/services/invoices/InvoicesService");
     const result = await InvoiceService.commitInvoice(
       req.body.uuid,
       req.body.status,
-      req.body.description
+      req.body.description,
+      req.body.uid
     );
     res.send(result);
   });

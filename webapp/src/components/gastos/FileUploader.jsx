@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ServiceAPI from '../../api/ServiceAPI';
 import ModalGastos from './ModalGastos';
 import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
+import Box from '@material-ui/core/Box';
 
 import {
   Paper,
@@ -27,26 +28,39 @@ const FileUploader = () => {
   const [fileUUID, setFileUUID] = useState('');
   const [concept, setConcept] = useState('');
   const [description, setDescription] = useState('');
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('');
   const [openModal, setOpenModal] = React.useState(false);
+  const [status, setStatus] = useState('');
+  const [observations, setObservations] = useState([]);
 
   const api = new ServiceAPI();
 
-  async function uploadFile(file_upload) {
-    const data = new FormData();
+  async function uploadFile(event) {
+    let file_upload = event.target.files[0];
     let userId = await getCurrentLoggedUserInfo();
+    const data = new FormData();    
     data.append('xml', file_upload);
     data.append('uid', userId.googleId);
+    setOpenModal(false);
+    setObservations([]);
 
     api
       .createRequest()
       .post('invoices/upload', data, {})
       .then((res) => {
         setFileUUID(res.data.uuid);
+        setStatus(res.data.analysisResult.status);
+        setObservations(res.data.analysisResult.observations);
         setConcept(res.data.concept);
         setDescription(res.data.description);
         setTotal(res.data.total);
         setOpenModal(true);
+        event.target.value = null;
+      })
+      .catch(() => {
+        setStatus('error');
+        setOpenModal(true);
+        event.target.value = null;
       });
   }
 
@@ -59,35 +73,44 @@ const FileUploader = () => {
           description={description}
           total={total}
           openModal={openModal}
+          status={status}
+          observations={observations}
         ></ModalGastos>
       }
       <Container>
         <Grid container spacing={4}>
-          <Grid item md={3}>
-            <Typography variant="h5" gutterBottom>
-              Facturas
+          <Grid item xs className={classes.expensesInovicesTitle}>
+            <Typography variant="h6" gutterBottom>
+              <Box fontWeight="fontWeightBold">
+                Facturas
+              </Box>
             </Typography>
-          </Grid>
-        </Grid>
-      </Container>
-      <Container>
-        <Grid container spacing={4}>
-          <Grid item md={4}>
             <Button variant="contained" component="label" color="primary">
               SELECCIONAR FACTURA
               <input
                 type="file"
                 hidden
-                onChange={(event) => uploadFile(event.target.files[0])}
+                onChange={(event) => uploadFile(event)}
               />
-            </Button>
+            </Button>            
+          </Grid>
+          <Grid item xs>
+            <Typography variant="h6" gutterBottom>
+              <Box fontWeight="fontWeightBold">
+                Últimas facturas añadidas
+              </Box>
+            </Typography>
           </Grid>
         </Grid>
-        <p>
-          {fileUUID} {concept} {description} {total}
-        </p>
+        
       </Container>
-    </Paper>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid item md={4}>
+          </Grid>
+        </Grid>
+      </Container>
+      </Paper>
   );
 };
 

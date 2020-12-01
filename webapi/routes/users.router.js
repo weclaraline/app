@@ -6,6 +6,12 @@ const UsersService = require("../src/services/Users/UsersService");
         res.send(recommendations);
     });
 
+    route.put('/', async (req, res) => {
+        const recommendations = await UsersService.put(req.body, req.headers);
+        res.send(recommendations);
+    });
+
+
     route.get('/', async (req, res) => {
         const recommendations = await UsersService.get(req.headers);
         res.send(recommendations);

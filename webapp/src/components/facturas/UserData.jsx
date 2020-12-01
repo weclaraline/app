@@ -1,22 +1,22 @@
 import { Card, CardContent, Grid, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
+import { ServiceAPI } from "../../api/";
+import { getCurrentLoggedUserInfo } from "../../utils/LogIn";
 
 const UserData = () => {
   const [userInfo, setUserInfo] = useState({});
 
-  const fetchUserData =   () => {
-    // const res = await api.createRequest().get('userInfo');
-    // setUserInfo(res);
-    setUserInfo({
-          name: "Luis Alfredo Tejeda",
-          rfc:"tesl881223nf1",
-          email:"luis.tejeda@wizeline.com",
-          address : "camino real a colima 51500"
-      })
+  const fetchUserData = async () => {
+    const api = new ServiceAPI();
+    const userInfo = await getCurrentLoggedUserInfo();
+    const res = await api.createRequest(userInfo.googleId).get('users');
+    if (res.data.length > 0) {
+      setUserInfo(res.data[0]);
+    }
   };
 
-  React.useEffect( () => {
-      fetchUserData();
+  React.useEffect(() => {
+    fetchUserData();
   }, []);
 
   return (

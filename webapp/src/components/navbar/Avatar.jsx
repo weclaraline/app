@@ -1,4 +1,4 @@
-import { Avatar as MuiAvatar, Button, Menu } from '@material-ui/core';
+import { Avatar as MuiAvatar, IconButton, Menu } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import Logout from '../logout/Logout';
 import { getCurrentLoggedUserInfo } from '../../utils/LogIn';
@@ -26,16 +26,16 @@ const Avatar = (props) => {
 
   return (
     <div {...props}>
-      <Button onClick={handleClick}>
+      <IconButton size="small" onClick={handleClick}>
         <MuiAvatar alt={user.givenName} src={user.imageUrl}/>
-      </Button>
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         getContentAnchorEl={null}
         open={Boolean(anchorEl)}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         anchorReference={null}
         transformOrigin={{

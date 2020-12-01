@@ -79,29 +79,29 @@ describe("InvoiceFieldResolver", function () {
 
   describe("Get the UUID", function () {
     it("return the uuid of an invoice", async function () {
-      const data = await fileReader.readFile(bankXML);
+      const data = await fileReader.readFile(filePath);
       const parsed = XMLParser.ParseXMLString(data);
       const uuid = getUUID(parsed);
       assert.notDeepStrictEqual(undefined, uuid);
-      assert.strictEqual(uuid, "A4F3850C-BF45-4B2A-98E1-C3B95EC3C155");
+      assert.strictEqual(uuid, "17CDF4E7-528C-459F-8E04-FDF3CC67258C");
     });
   });
   describe("Get the date", function () {
     it("return the date of an invoice", async function () {
-      const data = await fileReader.readFile(bankXML);
+      const data = await fileReader.readFile(filePath);
       const parsed = XMLParser.ParseXMLString(data);
-      const uuid = getDate(parsed);
-      assert.notDeepStrictEqual(undefined, uuid);
-      assert.strictEqual(uuid, "2020-09-30T23:59:59");
+      const date = getDate(parsed);
+      assert.notDeepStrictEqual(undefined, date);
+      assert.strictEqual(date, "2020-06-06T04:44:48");
     });
   });
   describe("Get the total", function () {
     it("return the total of an invoice", async function () {
-      const data = await fileReader.readFile(bankXML);
+      const data = await fileReader.readFile(filePath);
       const parsed = XMLParser.ParseXMLString(data);
-      const uuid = getTotal(parsed);
-      assert.notDeepStrictEqual(undefined, uuid);
-      assert.strictEqual(uuid, "3751.31");
+      const total = getTotal(parsed);
+      assert.notDeepStrictEqual(undefined, total);
+      assert.strictEqual(total, "13124.82");
     });
   });
 });

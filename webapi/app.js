@@ -8,6 +8,7 @@ const portFrontEnd = 5000;
 const fileUpload = require('express-fileupload'); 
 const InvoiceService = require("./src/services/invoices/InvoicesService");
 
+const expensesLimitsRouter = require("./routes/expensesLimits.router");
 const faqRouter = require("./routes/faq.router");
 const recommendationRouter = require("./routes/recommendations");
 const requirementsRouter = require("./routes/requirements");
@@ -22,7 +23,7 @@ app.use(fileUpload({
 }));
 
 app.get('/', (req, res) => {
-  res.send('Hello Weclaraline!')
+  res.send('Hello Weclaraline! 0.002')
 })
 app.use(bodyParser.urlencoded({ extended: true }));
 createConnection({
@@ -41,7 +42,8 @@ createConnection({
       require("./src/entity/RequirementsSchema"),
       require("./src/entity/FaqSchema"),
       require("./src/entity/SupportLinksSchema"),
-      require("./src/entity/UsersSchema")
+      require("./src/entity/UsersSchema"),
+      require("./src/entity/ExpensesLimitsSchema")
   ]
 }).then(() => {
 
@@ -53,6 +55,7 @@ createConnection({
   app.use('/invoices', invoicesRouter);
   app.use('/links', supportLinksRouter);
   app.use('/users', usersRouter);
+  app.use('/expensesLimits', expensesLimitsRouter);
   
   app.listen(port, () => {
     console.log(`API running in ${process.env.environment}`);
