@@ -11,7 +11,7 @@ class ServiceAPI {
             baseURL: this.getBaseURL(),
             adapter: httpAdapter,
             headers: {
-                'userid': googleId
+                "userid": googleId
               }
         });
     }
@@ -21,7 +21,7 @@ class ServiceAPI {
     }
 
     getBaseURL() {
-        return "http://api.weclaraline.tePstmyapp.info";
+        return "http://api.weclaraline.testmyapp.info/";
     }
 }
 

@@ -6,23 +6,24 @@ import { getByTestId, waitFor } from "@testing-library/react";
 import { unmountComponentAtNode, render } from "react-dom";
 import { generateDeductibleTypesAndRecommendations, generateFAQS, generateEnlaces } from "./generation_service";
 import { ServiceAPI, StatusCodes } from "../../../../api/";
-import { setCurrentLoggedUserInfo } from "../../../../utils/LogIn"
 import nock from "nock";
+import localForage from "localforage";
 
 let container = null;
 
 const build = () => render(<Facturas />, container);
-
 const recommendationsSuccessResponse =  generateDeductibleTypesAndRecommendations(4);
 const faqsSuccessResponse =  generateFAQS()
 const enlacesSuccessResponse =  generateEnlaces()
+const usersSuccessResponse = {};
+
 const fakeUserData = {
-    email: "andres.campos@wizeline.com",
-    familyName: "Campos Hernández",
-    givenName: "Andrés",
-    googleId: "115611530394300494470",
-    imageUrl: "https://lh3.googleusercontent.com/a-/AOh14GjxBpTZByYN3HY0p9ytxKIcN55tCV_cZ4DivDY=s96-c",
-    name: "Andrés Campos Hernández",
+    email: "name.surname@wizeline.com",
+    familyName: "Sur Name",
+    givenName: "Name",
+    googleId: "114578530345190412000",
+    imageUrl: "https://lh3.googleusercontent.com/a-/AOdd4GjdBpTdBydN3dY0p9ytxKIcN55tCV_cZ4DivDY=s96-b",
+    name: "Name Sur Name",
 };
 
 const createRecommendationsInterceptor = () => {
@@ -33,7 +34,9 @@ const createRecommendationsInterceptor = () => {
     .get("/links")
     .reply(StatusCodes.OK, enlacesSuccessResponse)
     .get("/faq")
-    .reply(StatusCodes.OK, faqsSuccessResponse);
+    .reply(StatusCodes.OK, faqsSuccessResponse)
+    .get("/users")
+    .reply(StatusCodes.OK, usersSuccessResponse);
 }
 
 
@@ -55,8 +58,9 @@ it("Renders original content", ()=> {
 });
 
 it("Calls recommendations", async () => {
-    
-    await setCurrentLoggedUserInfo( fakeUserData );
+
+    const CURRENT_LOGGED_USER = "user";
+    await localForage.setItem(CURRENT_LOGGED_USER, fakeUserData);
 
     createRecommendationsInterceptor();
     build();

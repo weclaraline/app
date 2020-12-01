@@ -1,21 +1,15 @@
 import {
   Button, Container,
-
   createStyles, Grid,
-
   makeStyles, Paper,
-
-
-
-
   Typography
 } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import React, { useState } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import { InvoiceUploadService } from "../../api/";
+import { getCurrentLoggedUserGoogleId } from "../../utils/LogIn";
 import ModalGastos from './ModalGastos';
-
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -33,22 +27,27 @@ const FileUploader = () => {
   const [invoiceConcept, setInvoiceConcept] = useState('');
   const [invoiceDescription, setInvoiceDescription] = useState('');
   const [invoiceTotal, setInvoiceTotal] = useState('');
-  const [invoiceStatus, setInvoiceStatus] = useState('');
+  const [invoiceStatus, setInvoiceUploadStatus] = useState('');
   const [invoiceObservations, setInvoiceObservations] = useState([]);
 
-  async function uploadFile(event) {
+  async function prepareInvoiceFileUpload(event) {
     let file_upload = event.target.files[0];
-    let userId = await getCurrentLoggedUserGoogleId();
+    let googleId = await getCurrentLoggedUserGoogleId();
     
     const data = new FormData();    
     
     data.append('xml', file_upload);
-    data.append('uid', userId.googleId);
+    data.append('uid', googleId);
     
     setOpenModal(false);
 
     setInvoiceObservations([]);
 
+    await uploadInvoiceFile(data);
+    event.target.value = null;
+  }
+
+  const uploadInvoiceFile = async (data) => {
     try {
       const invoiceUploadService = new InvoiceUploadService(data);
       const invoiceUploadServiceResponse = await invoiceUploadService.make();
@@ -62,18 +61,16 @@ const FileUploader = () => {
       } = invoiceUploadServiceResponse;
 
       setFileUUID(uuid);
-      setInvoiceStatus(analysisResult.status);
+      setInvoiceUploadStatus(analysisResult.status);
       setInvoiceObservations(analysisResult.observations);
       setInvoiceConcept(concept);
       setInvoiceDescription(description);
       setInvoiceTotal(total);
       setOpenModal(true);
-      event.target.value = null;
       
     } catch(error){
-      setStatus('error');
+      setInvoiceUploadStatus('error');
       setOpenModal(true);
-      event.target.value = null;
     }
   }
 
@@ -103,7 +100,7 @@ const FileUploader = () => {
               <input
                 type="file"
                 hidden
-                onChange={(event) => uploadFile(event)}
+                onChange={(event) => prepareInvoiceFileUpload(event)}
               />
             </Button>            
           </Grid>

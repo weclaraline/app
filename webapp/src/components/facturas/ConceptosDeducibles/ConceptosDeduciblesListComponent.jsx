@@ -31,14 +31,14 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
     );
 
     const displayAsLabeledList = (label, items) => !items ? noContent :
-        <Container maxWidth="xs" className={classes.borderedContainer}>
+        <Container maxWidth="xs" className={classes.borderedContainer} >
             <Typography className={classes.orangeBackground}>
             <FormControlLabel label={label} control={<FavoriteIcon />}/>
             </Typography>
             <ul>
                 {
                     items.map( (item) => 
-                        <Typography key={item.description}>
+                        <Typography key={Math.random()}>
                             <li>
                                 {item.description}
                             </li>

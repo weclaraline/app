@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { DeductiblesConceptService } from "../../api/";
 import ConceptosDeduciblesListComponent from "../facturas/ConceptosDeducibles/ConceptosDeduciblesListComponent";
 
-const deductiblesConceptService = new DeductiblesConceptService({});
+const deductiblesConceptService = new DeductiblesConceptService();
 
 const ConceptoDeduciblesComponent = () => {
 

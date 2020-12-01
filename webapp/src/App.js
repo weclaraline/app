@@ -10,8 +10,8 @@ import { isUserLoggedIn } from './utils/LogIn';
 import { useEffect } from 'react';
 import ThemeProvider from './providers/ThemeProvider';
 
-const UserApp = (proceed) =>
-  proceed ? (
+const UserApp = (loggedUserData) =>
+  loggedUserData ? (
     <Router>
       <Navbar />
       <Switch>
@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <ThemeProvider>{UserApp(proceed)}</ThemeProvider>
+      <ThemeProvider>{UserApp(loggedUserData)}</ThemeProvider>
     </div>
   );
 }

@@ -9,9 +9,9 @@ const UserData = () => {
 
   const fetchUserData = async () => {
 
-    const res = await userDataService.make();    
-    if (res.data.length > 0) {
-      setUserInfo(res.data[0]);
+    const userDataServiceResponse = await userDataService.make();
+    if (userDataServiceResponse.length > 0) {
+      setUserInfo(userDataServiceResponse[0]);
     }
   };
 
