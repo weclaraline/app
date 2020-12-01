@@ -30,6 +30,24 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
         </Typography>
     );
 
+    const displayAsLabeledList = (label, items) => !items ? noContent :
+        <Container maxWidth="xs" className={classes.borderedContainer}>
+            <Typography className={classes.orangeBackground}>
+            <FormControlLabel label={label} control={<FavoriteIcon />}/>
+            </Typography>
+            <ul>
+                {
+                    items.map( (item) => 
+                        <Typography key={item.description}>
+                            <li>
+                                {item.description}
+                            </li>
+                        </Typography> 
+                    )
+                }
+            </ul>
+        </Container>
+
     const listaConceptosDeducibles = (
         <div data-testid='lista_tipo_deducibles'>
              {conceptosDeducibles.map(conceptoDeducible => (
@@ -41,46 +59,16 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
                     </AccordionSummary>
 
                     <AccordionDetails>
-                        <Grid container spacing={0}  alignContent={"center"} alignItems={"top"}  >
+                        <Grid container spacing={0}  alignContent={"center"} >
                             <Grid item xs={12} md={6} >
-                                <Container maxWidth="xs" className={classes.borderedContainer}>
-                                    <Typography className={classes.orangeBackground}>
-                                    <FormControlLabel label="Recomendaciones" control={<FavoriteIcon />}/>
-                                    </Typography>
-                                    <ul>
-                                        {
-                                            conceptoDeducible
-                                                .recommendations
-                                                .map( 
-                                                    (recommendation) => 
-                                                        <Typography key={recommendation.description}>
-                                                            <li>
-                                                                {recommendation.description}
-                                                            </li>
-                                                        </Typography> )
-                                        }
-                                    </ul>
-                                </Container>
+                                {
+                                    displayAsLabeledList("Recomendaciones",conceptoDeducible.recommendations)
+                                }
                             </Grid>
                             <Grid item xs={12} md={6} >
-                                <Container maxWidth="xs" className={classes.borderedContainer}>
-                                    <Typography className={classes.orangeBackground}>
-                                    <FormControlLabel label="Requisitos" control={<FavoriteIcon />}/>
-                                    </Typography>
-                                    <ul>
-                                        {
-                                            conceptoDeducible
-                                                .requirements
-                                                .map( 
-                                                    (requirement) => 
-                                                        <Typography key={requirement.description}>
-                                                            <li>
-                                                                {requirement.description}
-                                                            </li>
-                                                        </Typography> )
-                                        }
-                                    </ul>
-                                </Container>
+                                {
+                                    displayAsLabeledList("Requisitos",conceptoDeducible.requirements)
+                                }
                             </Grid>
                         </Grid>
                     </AccordionDetails>
@@ -98,7 +86,7 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
 }
 
 ConceptosDeduciblesListComponent.propTypes = {
-    conceptosDeducibles: propTypes.array.isRequired
+    conceptosDeducibles :  propTypes.array.isRequired
 }
 
 export default ConceptosDeduciblesListComponent;

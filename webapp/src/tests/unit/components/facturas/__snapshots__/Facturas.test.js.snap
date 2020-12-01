@@ -34,6 +34,15 @@ exports[`Renders original content 1`] = `
   >
     <WithStyles(ForwardRef(Grid))
       item={true}
+      lg={12}
+      xs={12}
+    >
+      <WithStyles(ForwardRef(Card))>
+        <UserData />
+      </WithStyles(ForwardRef(Card))>
+    </WithStyles(ForwardRef(Grid))>
+    <WithStyles(ForwardRef(Grid))
+      item={true}
       lg={8}
       xs={12}
     >

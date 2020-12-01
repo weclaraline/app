@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => {
       height: '200px',
       background: main,
       display: 'flex',
-      alignItems: 'center',
       justifyContent: 'center',
     },
     paper: {
