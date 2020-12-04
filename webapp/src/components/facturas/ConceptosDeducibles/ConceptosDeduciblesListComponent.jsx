@@ -2,7 +2,6 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, Container, FormCont
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ReceiptIcon from '@material-ui/icons/Receipt';
-import propTypes from "prop-types";
 import React from "react";
 
 const useStyles = makeStyles( () => {
@@ -50,24 +49,24 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
 
     const listaConceptosDeducibles = (
         <div data-testid='lista_tipo_deducibles'>
-             {conceptosDeducibles.map(conceptoDeducible => (
-                <Accordion key={conceptoDeducible.tipo_deduccion}>
+             {conceptosDeducibles.map( ({ key, tipo_deduccion, deduction, recommendations, requirements }) => (
+                <Accordion key={ `concepto_deducible_${key}`} data-testid={`concepto_deducible_${key}`}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                     >
-                        <FormControlLabel label={conceptoDeducible.deduction} control={<ReceiptIcon />}/>
+                        <FormControlLabel label={ deduction } control={<ReceiptIcon />}/>
                     </AccordionSummary>
 
                     <AccordionDetails>
                         <Grid container spacing={0}  alignContent={"center"} >
                             <Grid item xs={12} md={6} >
                                 {
-                                    displayAsLabeledList("Recomendaciones",conceptoDeducible.recommendations)
+                                    displayAsLabeledList("Recomendaciones", recommendations)
                                 }
                             </Grid>
                             <Grid item xs={12} md={6} >
                                 {
-                                    displayAsLabeledList("Requisitos",conceptoDeducible.requirements)
+                                    displayAsLabeledList("Requisitos", requirements)
                                 }
                             </Grid>
                         </Grid>
@@ -85,8 +84,5 @@ const ConceptosDeduciblesListComponent = ({conceptosDeducibles}) => {
 
 }
 
-ConceptosDeduciblesListComponent.propTypes = {
-    conceptosDeducibles :  propTypes.array.isRequired
-}
 
 export default ConceptosDeduciblesListComponent;

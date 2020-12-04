@@ -1,6 +1,6 @@
 import faker from "faker";
 
-export const generateRecommendations = (quantity) => {
+export const generateRecommendationsOrRequirements = (quantity) => {
     let recommendations = []
     for( let i = 0; i < quantity; i++) {
         recommendations.push({
@@ -14,9 +14,10 @@ export const generateDeductibleTypesAndRecommendations = (quantity) => {
     let deductibleTypes= [];
     for( let i = 0; i < quantity; i++){
         deductibleTypes.push({
-            key: faker.random.uuid,
+            key: faker.random.uuid(),
             tipo_deduccion: faker.lorem.words(2),
-            recomendaciones: generateRecommendations(Math.floor(Math.random * 5) + 1 ),
+            recommendations: generateRecommendationsOrRequirements(Math.floor(Math.random * 5) + 1 ),
+            requirements: generateRecommendationsOrRequirements(Math.floor(Math.random * 5) + 1 )
         })
     }
     return deductibleTypes;

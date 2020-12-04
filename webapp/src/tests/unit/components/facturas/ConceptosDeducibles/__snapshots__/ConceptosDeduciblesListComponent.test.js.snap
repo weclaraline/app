@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders original content 1`] = `
+<Styled(MuiBox)
+  mb={2}
+>
+  <WithStyles(ForwardRef(Typography))
+    align="left"
+    gutterBottom={true}
+    variant="h6"
+  >
+    No se encontraron resultados
+  </WithStyles(ForwardRef(Typography))>
+</Styled(MuiBox)>
+`;
